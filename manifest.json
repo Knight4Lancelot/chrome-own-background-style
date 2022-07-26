@@ -14,15 +14,18 @@
         "default_title": "Chrome Addon v3 Starter",
         "default_popup": "popup/popup.html"
     },
-    "permissions": [],
-    "host_permissions": [
-        "*://*/*"
-    ],
+    "permissions": [
+		"activeTab",
+		"geolocation"
+	],
+	"chrome_url_overrides": {
+	  "newtab": "newPage/newIndex.html"
+	},
     "background": {
         "service_worker": "service-worker.js"
     },
     "content_scripts": [{
         "js": ["foreground.js"],
-        "matches": ["https://github.com/*"]
+        "matches": ["http://"]
     }]
 }

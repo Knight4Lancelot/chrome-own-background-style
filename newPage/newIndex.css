@@ -1,0 +1,40 @@
+#main-body {
+	/* background-color: red; */
+}
+#Timer {
+	position: absolute;
+	background-color: red;
+}
+#search-input {
+	transition: 0.6s;
+	position: absolute;
+	z-index: 1;
+	top: 250px;
+	left: 30%;
+	width: 30%;
+	height: 50px;
+	border-top-left-radius: 40px;
+	border-bottom-left-radius: 40px;
+	border: 2px solid #C0C4CC;
+	border-right: none;
+	padding-left: 30px;
+	font-size: 20px;
+	font-family: "Microsoft YaHei";
+	background-color: #FAFAFA;
+	outline: none;
+}
+#confirm-search-btn {
+	transition: 0.6s;
+	cursor: pointer;
+	position: absolute;
+	z-index: 2;
+	height: 56px;
+	width: 5%;
+	top: 250px;
+	left: 62%;
+	border: 2px solid #C0C4CC;
+	border-left: none;
+	border-top-right-radius: 40px;
+	border-bottom-right-radius: 40px;
+	background-color: #FAFAFA;
+}
