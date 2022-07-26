@@ -13,7 +13,7 @@
 }
 #Timer {
 	position: absolute;
-	background-color: red;
+	/* background-color: red; */
 	top: 50px;
 	left: 30%;
 	height: 200px;
