@@ -1,0 +1,27 @@
+#time-clock {
+	user-select: none;
+	position: absolute;
+	z-index: 2;
+	top: 100px;
+	font-size: 80px;
+	font-weight: 500;
+	color: #606266;
+}
+#date-clock-1 {
+	user-select: none;
+	position: absolute;
+	z-index: 2;
+	top: 220px;
+	font-size: 16px;
+	color: #63656C;
+	font-weight: 500;
+}
+#date-clock-2 {
+	user-select: none;
+	position: absolute;
+	z-index: 2;
+	top: 250px;
+	font-size: 20px;
+	color: #63656C;
+	font-family: "Cascadia mono";
+}

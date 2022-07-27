@@ -3,22 +3,31 @@
 	<head>
 		<meta charset="utf-8">
 		<title>新页标签</title>
-		<link rel="stylesheet" href="newIndex.css">
+		<link rel="stylesheet" href="css/index.css">
+		<link rel="stylesheet" href="css/timer.css">
+		<link rel="stylesheet" href="css/search-box.css">
+		<link rel="stylesheet" href="css/function-tools.css">
+		<link rel="stylesheet" href="css/outer-functions.css">
 	</head>
 	<body id="main-body">
+		<div id="cover-layer"></div>
 		<img id="body-background" src="../assets/background.png">
+		
+		<!-- 头部时钟 -->
 		<div id="Timer">
 			<span id="date-clock-1"></span>
 			<span id="time-clock"></span>
 			<span id="date-clock-2"></span>
 		</div>
 		
+		<!-- 搜索框 -->
 		<input type="text" id="search-input">
 		<button id="confirm-search-btn">
-			<img id="btn-cover-icon" 
+			<img id="btn-cover-icon"
 				src="../logo/search.png">
 		</button>
 		
+		<!-- 功能列表栏 -->
 		<div id="tools">
 			<button class="function-entries"
 				id="web-collections">
@@ -26,23 +35,39 @@
 			</button>
 			<span class="hover-show-function-name"
 				id="web-collections-name"
-				>收藏网页</span>
+				>收 藏 网 页</span>
 			<button class="function-entries"
 				id="set-background">
 				<img src="../assets/function-entries/setBackground.png">
 			</button>
 			<span class="hover-show-function-name"
 				id="set-background-name"
-				>修改背景</span>
+				>修 改 背 景</span>
+			<button class="function-entries"
+				id="record-issues">
+				<img src="../assets/function-entries/notebook.png">
+			</button>
+			<span class="hover-show-function-name"
+				id="record-issues-name"
+				>备 忘 事 件</span>
 			<button class="function-entries"
 				id="more-functions">
 				<img src="../assets/function-entries/newEntry.png">
 			</button>
 			<span class="hover-show-function-name"
 				id="more-functions-name"
-				>更多功能</span>
+				>更 多 功 能</span>
 		</div>
 		
-		<script type="text/javascript" src="./newIndex.js"></script>
+		<!-- 外部功能部分 -->
+		<!-- 背景修改界面 -->
+		<div id="change-background-img">
+			
+		</div>
+		
+		<script type="text/javascript" src="js/init-params.js"></script>
+		<script type="text/javascript" src="js/normal.js"></script>
+		<script type="text/javascript" src="js/function-entry-btns.js"></script>
+		<script type="text/javascript" src="js/outer-part.js"></script>
 	</body>
 </html>

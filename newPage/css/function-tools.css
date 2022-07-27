@@ -1,0 +1,39 @@
+#tools {
+	position: absolute;
+	/* background-color: red; */
+	z-index: 2;
+	top: 450px;
+	height: 340px;
+	width: 790px;
+}
+#tools span {
+	font-size: 14px;
+	color: #606266;
+	font-family: "Microsoft YaHei";
+}
+.function-entries {
+	opacity: 0.6;
+	transition: 0.3s;
+	user-select: none;
+	cursor: pointer;
+	position: absolute;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	border: 3px solid #DCDFE6;
+	background-color: #FAFAFA;
+}
+.function-entries img {
+	transition: 0.3s;
+	position: inherit;
+	height: 30px;
+	width: 30px;
+	left: 22px;
+	top: 22px;
+}
+.hover-show-function-name {
+	cursor: pointer;
+	position: absolute;
+	width: 100px;
+	visibility: hidden;
+}
