@@ -1,11 +1,31 @@
+.close-btns {
+	cursor: pointer;
+	position: inherit;
+	right: 10px;
+	top: 10px;
+	width: 40px;
+	height: 40px;
+	border: none;
+	background-color: white;
+}
+.close-btns-icon {
+	position: inherit;
+	user-select: none;
+	left: 12px;
+	top: 12px;
+	width: 15px;
+	height: 15px;
+}
 #change-background-img {
+	transition: 1s;
 	position: absolute;
 	z-index: 6;
+	/* top: -600px; */
 	top: 100px;
-	left: 100px;
 	height: 600px;
 	width: 1100px;
 	border-radius: 14px;
-	background-color: red;
-	visibility: hidden;
+	background-color: white;
+	border: 1px solid #C0C4CC;
+	/* visibility: hidden; */
 }

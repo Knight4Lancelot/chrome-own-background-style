@@ -14,52 +14,6 @@ function loadBackground() {
 	backgroundImg.style.height = String(naturalImgSize.height/ratio) + 'px';
 }
 
-function init() {
-	pageHeight=document.documentElement.clientHeight;
-	pageWidth=document.documentElement.clientWidth;
-	if (pageHeight<700) { pageHeight = 700; }
-	if (pageWidth<1300) { pageWidth = 1300; }
-	body.style.width = pageWidth;
-	body.style.height = pageHeight;
-	// 加载背景图片
-	loadBackground();
-	// 加载时钟
-	var rawDate = new Date();
-	var year = rawDate.getFullYear()  //获取年
-	var month = rawDate.getMonth()+1;  //获取月
-	var day = rawDate.getDay()    //获取日
-	var days = rawDate.getDate() //获取日期
-	if (month<10) month = "0" + month;
-	if (days<10) days = "0" + days;
-	var week = new Array(
-		"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
-	);
-	var date = year+" 年 "+month+" 月 "+days+" 日";
-	dateClock1.innerText = date;
-	dateClock2.innerText = week[day];
-	freshTime() // 加载时钟
-	// 组件位置居中对齐
-	body.style.width = String(pageWidth) + 'px';
-	body.style.height = String(pageHeight) + 'px';
-	searchInput.style.left = String((pageWidth - 564)/2) + 'px';
-	searchBtn.style.left = String((pageWidth - 564)/2 + 484) + 'px';
-	timeClock.style.left = String((pageWidth - 370)/2-10) + 'px';
-	dateClock1.style.left = String((pageWidth-155)/2) + 'px';
-	dateClock2.style.left = String((pageWidth - 120)/2) + 'px';
-	tools.style.left = String((pageWidth - 790)/2) + 'px';
-	// 功能按钮定位
-	for (var i = 0; i < btnList.length; i++) {
-		btnListLocation.left.push(20+i*150);
-		btnListLocation.top.push(20);
-		btnList[i].style.left = String(btnListLocation.left[i]) + 'px';
-		btnList[i].style.top = String(btnListLocation.top[i]) + 'px';
-		nameList[i].style.left = String(btnListLocation.left[i]+5) + 'px';
-		nameList[i].style.top = String(btnListLocation.top[i]+55) + 'px';
-		hiddenNameList.btn.push(false);
-		hiddenNameList.span.push(false);
-	}
-}
-
 function setInputShow(status) {
 	if (status) {
 		searchInput.style.border = "2px solid #4CA4FF";
@@ -76,9 +30,9 @@ function setInputShow(status) {
 
 function setBtnIconShow(status) {
 	if (status) {
-		searchBtnIcon.src = "../logo/search-active.png"
+		searchBtnIcon.src = "../../assets/icons/search-active.png";
 	} else {
-		searchBtnIcon.src = "../logo/search.png"
+		searchBtnIcon.src = "../../assets/icons/search.png"
 	}
 }
 
