@@ -1,8 +1,7 @@
 #tools {
 	position: absolute;
-	/* background-color: red; */
 	z-index: 2;
-	top: 450px;
+	top: 480px;
 	height: 340px;
 	width: 790px;
 }

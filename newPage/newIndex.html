@@ -67,7 +67,15 @@
 				<img class="close-btns-icon"
 					src="../assets/icons/close.png">
 			</button>
-			<div></div>
+			<div id="img-preview-area">
+				<img id="blank-img" src="../assets/blank-file.png">
+				<span id="blank-description">当前暂无图片被选择</span>
+			</div>
+			<span style="position:inherit;bottom:45px;left:50px;font-size:18px;color:#606266;">当前放缩比例：
+				<input type="text" id="change-img-ratio" maxlength="3" placeholder="100"> %
+			</span>
+			<button id="choose-img">选择图片</button>
+			<button id="confirm-set-background">确定使用</button>
 		</div>
 		
 		<script type="text/javascript" src="js/init-params.js"></script>

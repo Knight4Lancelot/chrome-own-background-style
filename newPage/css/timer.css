@@ -2,7 +2,7 @@
 	user-select: none;
 	position: absolute;
 	z-index: 2;
-	top: 100px;
+	top: 130px;
 	font-size: 80px;
 	font-weight: 500;
 	color: #606266;
@@ -11,7 +11,7 @@
 	user-select: none;
 	position: absolute;
 	z-index: 2;
-	top: 220px;
+	top: 270px;
 	font-size: 16px;
 	color: #63656C;
 	font-weight: 500;
@@ -20,7 +20,7 @@
 	user-select: none;
 	position: absolute;
 	z-index: 2;
-	top: 250px;
+	top: 300px;
 	font-size: 20px;
 	color: #63656C;
 	font-family: "Cascadia mono";

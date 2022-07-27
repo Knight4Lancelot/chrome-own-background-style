@@ -41,6 +41,7 @@ var recordIssue = document.getElementById('record-issues');
 
 // 不在页面中显示的模块
 var outerPartList = document.getElementsByClassName('outer-part');
+var indexCoverLayer = document.getElementById('cover-layer');
 var changeBackgroundComponent = document.getElementById('change-background-img');
 
 // 不在页面中显示的模块的关闭按钮与图标
@@ -118,7 +119,7 @@ function init() {
 	timeClock.style.left = String((pageWidth - 370)/2-10) + 'px';
 	dateClock1.style.left = String((pageWidth - 155)/2) + 'px';
 	dateClock2.style.left = String((pageWidth - 120)/2) + 'px';
-	tools.style.left = String((pageWidth - 790)/2) + 'px';
+	tools.style.left = String((pageWidth - 750)/2) + 'px';
 	changeBackgroundComponent.style.left = String((pageWidth - 1100)/2) + 'px';
 	
 	// 功能按钮定位

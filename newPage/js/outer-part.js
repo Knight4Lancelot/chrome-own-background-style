@@ -7,12 +7,13 @@ function setBtnStatus(index, status) {
 }
 
 function closeOuterPart(index) {
-	console.log(index)
+	indexCoverLayer.style.visibility = 'hidden';
 	outerPartList[index].style.visibility = 'hidden';
 	outerPartList[index].style.top = '-600px';
 }
 
 function showChangeBackground() {
+	indexCoverLayer.style.visibility = 'visible';
 	changeBackgroundComponent.style.visibility = 'visible';
 	changeBackgroundComponent.style.top = String((pageHeight-600)/2)+'px';
 }
