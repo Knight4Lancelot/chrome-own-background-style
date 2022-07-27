@@ -7,7 +7,7 @@ function loadBackground() {
 	// ratio2 = naturalImgSize.width / pageWidth;
 	// ratio = ratio1 < ratio2 ? ratio1 : ratio2;
 	// console.log(ratio);
-	ratio = 1.25;
+	ratio = 1;
 	backgroundImg.style.left = String(-top) + 'px';
 	backgroundImg.style.top = String(-left) + 'px';
 	backgroundImg.style.width = String(naturalImgSize.width/ratio) + 'px';
@@ -48,8 +48,6 @@ function setSearchPartOpacity(status) {
 
 function jump2URL() {
 	var url = searchInput.value;
-	console.log(url)
-	//console.log(document.location)
 	if (url.slice(0,4)==="http") {
 		window.open(url);
 	} else {

@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>新页标签</title>
+		<link rel="stylesheet" href="css/scroller.css">
 		<link rel="stylesheet" href="css/index.css">
 		<link rel="stylesheet" href="css/timer.css">
 		<link rel="stylesheet" href="css/search-box.css">
@@ -68,6 +69,17 @@
 					src="../assets/icons/close.png">
 			</button>
 			<div id="img-preview-area">
+				<div class="choose-img-cover-layer" id="cover-layer-left"></div>
+				<div class="choose-img-cover-layer" id="cover-layer-right"></div>
+				<div class="choose-img-cover-layer" id="cover-layer-top"></div>
+				<div class="choose-img-cover-layer" id="cover-layer-bottom"></div>
+				<div id="img-chosen-part">
+					<div class="corner-boundaries" id="boundaries-top-left"></div>
+					<div class="corner-boundaries" id="boundaries-top-right"></div>
+					<div class="corner-boundaries" id="boundaries-bottom-left"></div>
+					<div class="corner-boundaries" id="boundaries-bottom-right"></div>
+				</div>
+				<img id="chosen-img" src="../assets/background-buffer.png">
 				<img id="blank-img" src="../assets/blank-file.png">
 				<span id="blank-description">当前暂无图片被选择</span>
 			</div>

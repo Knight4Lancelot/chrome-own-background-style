@@ -3,6 +3,10 @@ var naturalImgSize = {
 	height: 0,
 	width: 0
 };
+var readImgAttr = {
+	height: 0,
+	width: 0
+};
 var inputFocus = false;
 var btnHover = false;
 var inputHover = false;
@@ -42,7 +46,11 @@ var recordIssue = document.getElementById('record-issues');
 // 不在页面中显示的模块
 var outerPartList = document.getElementsByClassName('outer-part');
 var indexCoverLayer = document.getElementById('cover-layer');
+// 修改背景功能元素
 var changeBackgroundComponent = document.getElementById('change-background-img');
+var chosenImg = document.getElementById('choose-img');
+var ratioSetter = document.getElementById('change-img-ratio');
+var imgChosenPart = document.getElementById('img-chosen-part');
 
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
@@ -70,6 +78,11 @@ recordIssue.onmouseout = function() { changeBtnSize(2, false); }; // function-en
 moreFunctions.onmouseover = function() { changeBtnSize(3, true); }; // function-entry-btns.js
 moreFunctions.onmouseout = function() { changeBtnSize(3, false); }; // function-entry-btns.js
 
+// 修改背景功能元素的函数设置
+imgChosenPart.onmousedown = function() { partChoose(); }; // outer-part.js
+imgChosenPart.onmouseup = function() { partRelease(); }; // outer-part.js
+imgChosenPart.onmousemove = function() { partMove() }; // outer-part.js
+
 for (let i = 0; i < nameList.length; i++) {
 	nameList[i].onmouseover = function() { changeNameVisible(i, true); };
 	nameList[i].onmouseout = function() { changeNameVisible(i, false); };	
@@ -86,6 +99,12 @@ document.onkeypress = function() {
 	}
 }
 
+document.onmousewheel = function() {
+	if (changeBackgroundComponent.style.visibility==="visible") {
+		changeRatio(window.event.wheelDelta);
+	}
+}
+
 function init() {
 	pageHeight=document.documentElement.clientHeight;
 	pageWidth=document.documentElement.clientWidth;
@@ -94,7 +113,7 @@ function init() {
 	body.style.width = pageWidth;
 	body.style.height = pageHeight;
 	// 加载背景图片
-	loadBackground();
+	loadBackground(); // normal.js
 	// 加载时钟
 	var rawDate = new Date();
 	var year = rawDate.getFullYear()  //获取年
