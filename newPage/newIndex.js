@@ -49,7 +49,7 @@ function init() {
 	body.style.height = String(pageHeight) + 'px';
 	searchInput.style.left = String((pageWidth - 564)/2) + 'px';
 	searchBtn.style.left = String((pageWidth - 564)/2 + 484) + 'px';
-	timeClock.style.left = String((pageWidth - 370)/2+8) + 'px';
+	timeClock.style.left = String((pageWidth - 370)/2-10) + 'px';
 	dateClock1.style.left = String((pageWidth-140)/2) + 'px';
 	dateClock2.style.left = String((pageWidth - 73)/2) + 'px';
 	tools.style.left = String((pageWidth - 750)/2) + 'px';
@@ -94,7 +94,7 @@ function jump2URL() {
 	if (url.slice(0,4)==="http") {
 		window.open(url);
 	} else {
-		window.open('https://'+url);
+		window.open('http://'+url);
 	}
 }
 
