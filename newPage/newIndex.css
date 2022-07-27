@@ -91,8 +91,8 @@
 	/* background-color: red; */
 	z-index: 2;
 	top: 400px;
-	height: 300px;
-	width: 750px;
+	height: 340px;
+	width: 790px;
 }
 #tools span {
 	font-size: 14px;
@@ -100,45 +100,28 @@
 	font-family: "Microsoft YaHei";
 }
 .function-entries {
+	opacity: 0.7;
+	transition: 0.3s;
 	user-select: none;
 	cursor: pointer;
 	position: absolute;
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	border: 2px solid #DCDFE6;
+	border: 3px solid #DCDFE6;
 	background-color: #FAFAFA;
 }
 .function-entries img {
+	transition: 0.3s;
 	position: inherit;
 	height: 30px;
 	width: 30px;
-	left: 23px;
-	top: 23px;
+	left: 22px;
+	top: 22px;
 }
-
-#web-collections {
-	top: 10px;
-	left: 0px;
-}
-#web-collections img {
-	height: 35px;
-	width: 35px;
-	left: 19px;
-	top: 19px;
-}
-#web-collections-description {
-	position: inherit;
-	top: 100px;
-	left: 12px;
-}
-
-#more-functions {
-	top: 10px;
-	left: 300px;
-}
-
-#set-background {
-	top: 10px;
-	left: 150px;
+.hover-show-function-name {
+	cursor: pointer;
+	position: absolute;
+	width: 100px;
+	visibility: hidden;
 }
