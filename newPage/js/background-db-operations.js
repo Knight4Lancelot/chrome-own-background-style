@@ -7,3 +7,7 @@ function initDBTable() {
 function dropDBTable() {
 	
 }
+
+function readDBTableData() {
+	
+}
