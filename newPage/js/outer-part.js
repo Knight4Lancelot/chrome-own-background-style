@@ -27,17 +27,38 @@ function showChangeBackground() {
 }
 
 function changeRatio(value) {
-	console.log('mouse-once-change-value = ', value);
 	var ratio = ratioSetter.value;
 	if (ratio.length===0) { ratio = 100; }
 	else { ratio = parseInt(parseFloat(ratio)); }
-	ratio += (value) / 150;
-	if (ratio>999) {
-		ratio = 999;
-	} else if (ratio < 10) {
-		ratio = 10
+	ratio += (value>0?1:-1);
+	if (ratio>readImgInfos.maxratio*100) {
+		ratio = readImgInfos.maxratio*100;
+	} else if (ratio<readImgInfos.minratio*100) {
+		ratio = readImgInfos.minratio*100;
 	}
-	ratioSetter.value = String(ratio);
+	ratioSetter.value = String(parseInt(ratio));
+	readImgInfos.ratio = ratio;
+	imgSelectorInfo.width = imgSelectorInfo.initWidth*ratio/100;
+	imgSelectorInfo.height = imgSelectorInfo.initHeight*ratio/100;
+	imgChosenPart.style.width = String(imgSelectorInfo.width) + 'px';
+	imgChosenPart.style.height = String(imgSelectorInfo.height) + 'px';
+	imgCoverLayer[2].style.width = String(imgSelectorInfo.width) + 'px';
+	imgCoverLayer[3].style.width = String(imgSelectorInfo.width) + 'px';
+	if (imgSelectorInfo.left+imgSelectorInfo.width<readImgInfos.left+readImgInfos.narrowWidth) {
+		imgCoverLayer[1].style.width = String(
+			(chosenImg.narrowWidth>1000?chosenImg.narrowWidth:1000)
+			-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';	
+		imgCoverLayer[1].style.left = String(imgSelectorInfo.left+imgSelectorInfo.width) + 'px';
+	} else {
+		return;
+	}
+	if (imgSelectorInfo.top+imgSelectorInfo.height<430) {
+		imgCoverLayer[3].style.height = String(
+			430-imgSelectorInfo.top-imgSelectorInfo.height
+			) + 'px';
+	} else {
+		return;
+	}
 }
 
 function setChooserSize() {
@@ -47,6 +68,9 @@ function setChooserSize() {
 // 拖动选中区域div的代码部分
 function partChoose() {
 	isChosen = true;
+	for (let i = 0; i < imgChosenCornerList.length; i++) {
+		imgChosenCornerList[i].style['border-color'] = '#2E95FF';
+	}
 	//获取鼠标按下时坐标
 	m_down_x = event.pageX;
 	m_down_y = event.pageY;
@@ -59,6 +83,9 @@ function partChoose() {
 }
 function partRelease() {
 	isChosen = false;
+	for (let i = 0; i < imgChosenCornerList.length; i++) {
+		imgChosenCornerList[i].style['border-color'] = '#92C8FF';
+	}
 }
 function partMove() {
 	//实时更新div的坐标

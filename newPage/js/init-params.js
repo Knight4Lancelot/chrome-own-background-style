@@ -8,6 +8,8 @@ var readImgInfos = {
 	top: 0,
 	left: 0,
 	ratio: 1,
+	minratio: 1,
+	maxratio: 1,
 	naturalWidth: 1920,
 	naturalHeight: 1080,
 	narrowWidth: 0,
@@ -18,6 +20,8 @@ var readImgInfos = {
 var imgSelectorInfo = {
 	left: 0,
 	top: 0,
+	initWidth: 0,
+	initHeight: 0,
 	width: 0,
 	height: 0
 };
@@ -68,7 +72,7 @@ var imgChosenPart = document.getElementById('img-chosen-part');
 var chosenImg = document.getElementById('chosen-img');
 var imgCoverLayer = document.getElementsByClassName('choose-img-cover-layer');
 var imgChosenPart = document.getElementById('img-chosen-part');
-
+var imgChosenCornerList = document.getElementsByClassName('corner-boundaries');
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
@@ -105,7 +109,7 @@ for (let i = 0; i < nameList.length; i++) {
 	nameList[i].onmouseover = function() { changeNameVisible(i, true); };
 	nameList[i].onmouseout = function() { changeNameVisible(i, false); };	
 }
-for (let i = 0; i < closeBtnsList.length; i++) {
+for (let i = 0; i < closeBtnsList.length; i++) { // outer-part.js
 	closeBtnsList[i].onmouseover = function() { setBtnStatus(i, true); };
 	closeBtnsList[i].onmouseout = function() { setBtnStatus(i, false); };
 	closeBtnsList[i].onclick = function() { closeOuterPart(i); }
@@ -169,10 +173,12 @@ function init() {
 		imgSelectorInfo.height = 430;
 	}
 	imgSelectorInfo.width = imgSelectorInfo.height*pageWidth/pageHeight;
-	imgSelectorInfo.top = (430-imgSelectorInfo.height)/2;
+	imgSelectorInfo.initHeight = imgSelectorInfo.height;
+	imgSelectorInfo.initWidth = imgSelectorInfo.width;
+	imgSelectorInfo.top = 0;
 	imgSelectorInfo.left = (1000-readImgInfos.narrowWidth)/2;
 	imgChosenPart.style.left = chosenImg.style.left;
-	imgChosenPart.style.top = String(imgSelectorInfo.top) + 'px';
+	imgChosenPart.style.top = '0px';
 	imgChosenPart.style.width = String(imgSelectorInfo.width)+'px';
 	imgChosenPart.style.height = String(imgSelectorInfo.height)+'px';
 	imgCoverLayer[0].style.width = chosenImg.style.left;
@@ -187,7 +193,13 @@ function init() {
 	imgCoverLayer[3].style.height = String(
 		430-imgSelectorInfo.top-imgSelectorInfo.height
 		) + 'px';
-	console.log(readImgInfos)
+	var r1 = 430/imgSelectorInfo.initHeight,
+		r2 = readImgInfos.narrowWidth/imgSelectorInfo.initWidth;
+	readImgInfos.maxratio = r1 < r2 ? r1 : r2;
+	r1 = 100/imgSelectorInfo.initHeight;
+	r2 = 100/imgSelectorInfo.initWidth;
+	console.log(r1, r2)
+	readImgInfos.minratio = r1 > r2 ? r1 : r2;
 	// 功能按钮定位
 	for (var i = 0; i < btnList.length; i++) {
 		btnListLocation.left.push(20+i*150);

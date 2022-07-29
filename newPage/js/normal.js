@@ -69,9 +69,9 @@ function searchInputIsOver(status) {
 }
 
 function freshTime() {
-	window.setTimeout(function(){
-		freshTime();
-	},1000/2)
+	// window.setTimeout(function(){
+	// 	freshTime();
+	// },1000/2)
 	var rawDate = new Date();
 	var hour = rawDate.getHours()   //获取小时
 	var minute = rawDate.getMinutes()  //获取分钟

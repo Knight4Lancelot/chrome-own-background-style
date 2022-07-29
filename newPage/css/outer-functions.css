@@ -48,8 +48,8 @@
 	user-select: none;
 	position: inherit;
 	z-index: 6;
-	opacity: 0.6;
-	background-color: #909399;
+	opacity: 0.5;
+	background-color: black;
 	/* visibility: hidden; */
 }
 #cover-layer-left {
@@ -92,31 +92,31 @@
 	position: inherit;
 	width: 15px;
 	height: 15px;
-	border-radius: 3px;
+	border: 3.5px solid #92C8FF;
 }
 #boundaries-top-left {
 	top: 0;
 	left: 0;
-	border-left: 3.5px solid #2E95FF;
-	border-top: 3.5px solid #2E95FF;
+	border-right: none;
+	border-bottom: none;
 }
 #boundaries-top-right {
 	top: 0;
 	right: 0;
-	border-right: 3.5px solid #2E95FF;
-	border-top: 3.5px solid #2E95FF;
+	border-left: none;
+	border-bottom: none;
 }
 #boundaries-bottom-left {
 	bottom: 0;
 	left: 0;
-	border-left: 3.5px solid #2E95FF;
-	border-bottom: 3.5px solid #2E95FF;
+	border-right: none;
+	border-top: none;
 }
 #boundaries-bottom-right {
 	bottom: 0;
 	right: 0;
-	border-right: 3.5px solid #2E95FF;
-	border-bottom: 3.5px solid #2E95FF;
+	border-left: none;
+	border-top: none;
 }
 
 
