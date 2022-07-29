@@ -21,7 +21,6 @@ var imgSelectorInfo = {
 	width: 0,
 	height: 0
 };
-readImgInfos.narrowWidth = 430*readImgInfos.naturalWidth/readImgInfos.naturalHeight;
 var inputFocus = false;
 var btnHover = false;
 var inputHover = false;
@@ -63,11 +62,12 @@ var outerPartList = document.getElementsByClassName('outer-part');
 var indexCoverLayer = document.getElementById('cover-layer');
 // 修改背景功能元素
 var changeBackgroundComponent = document.getElementById('change-background-img');
-var chooseImgBtn = document.getElementById('choose-img');
+var chooseImgBtn = document.getElementById('choose-img-btn');
 var ratioSetter = document.getElementById('change-img-ratio');
 var imgChosenPart = document.getElementById('img-chosen-part');
 var chosenImg = document.getElementById('chosen-img');
-
+var imgCoverLayer = document.getElementsByClassName('choose-img-cover-layer');
+var imgChosenPart = document.getElementById('img-chosen-part');
 
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
@@ -98,6 +98,7 @@ moreFunctions.onmouseout = function() { changeBtnSize(3, false); }; // function-
 // 修改背景功能元素的函数设置
 imgChosenPart.onmousedown = function() { partChoose(); }; // outer-part.js
 imgChosenPart.onmouseup = function() { partRelease(); }; // outer-part.js
+imgChosenPart.onmouseout = function() { partRelease(); }; // outer-part.js
 imgChosenPart.onmousemove = function() { partMove() }; // outer-part.js
 
 for (let i = 0; i < nameList.length; i++) {
@@ -157,9 +158,36 @@ function init() {
 	dateClock2.style.left = String((pageWidth - 80)/2) + 'px';
 	tools.style.left = String((pageWidth - 750)/2) + 'px';
 	changeBackgroundComponent.style.left = String((pageWidth - 1100)/2) + 'px';
+	// 修改背景图片元素的大小初始化
+	readImgInfos.narrowWidth = 430*readImgInfos.naturalWidth/readImgInfos.naturalHeight;
+	readImgInfos.left = (1000-readImgInfos.narrowWidth)/2;
 	if (readImgInfos.narrowWidth<1000) {
-		chosenImg.style.left = String((1000-readImgInfos.narrowWidth)/2) + 'px';
+		chosenImg.style.left = String(readImgInfos.left) + 'px';
 	}
+	imgSelectorInfo.height = 430*pageHeight/readImgInfos.naturalHeight;
+	if (imgSelectorInfo.height>430) {
+		imgSelectorInfo.height = 430;
+	}
+	imgSelectorInfo.width = imgSelectorInfo.height*pageWidth/pageHeight;
+	imgSelectorInfo.top = (430-imgSelectorInfo.height)/2;
+	imgSelectorInfo.left = (1000-readImgInfos.narrowWidth)/2;
+	imgChosenPart.style.left = chosenImg.style.left;
+	imgChosenPart.style.top = String(imgSelectorInfo.top) + 'px';
+	imgChosenPart.style.width = String(imgSelectorInfo.width)+'px';
+	imgChosenPart.style.height = String(imgSelectorInfo.height)+'px';
+	imgCoverLayer[0].style.width = chosenImg.style.left;
+	imgCoverLayer[1].style.width = String(
+		(chosenImg.narrowWidth>1000?chosenImg.narrowWidth:1000)
+		-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';
+	imgCoverLayer[2].style.width = String(imgSelectorInfo.width) + 'px';
+	imgCoverLayer[2].style.left = String(imgSelectorInfo.left) + 'px';
+	imgCoverLayer[2].style.height = String(imgSelectorInfo.top) + 'px';
+	imgCoverLayer[3].style.width = String(imgSelectorInfo.width) + 'px'
+	imgCoverLayer[3].style.left = String(imgSelectorInfo.left) + 'px';
+	imgCoverLayer[3].style.height = String(
+		430-imgSelectorInfo.top-imgSelectorInfo.height
+		) + 'px';
+	console.log(readImgInfos)
 	// 功能按钮定位
 	for (var i = 0; i < btnList.length; i++) {
 		btnListLocation.left.push(20+i*150);

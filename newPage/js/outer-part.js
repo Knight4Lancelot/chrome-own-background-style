@@ -1,3 +1,4 @@
+
 var isChosen = false;
 var m_move_x, m_move_y,
 	m_down_x, m_down_y,
@@ -66,13 +67,35 @@ function partMove() {
 	//获取鼠标移动实时坐标
 	m_move_x = event.pageX;
 	m_move_y = event.pageY;
-	//鼠标按下时移动才触发
+	ndx = m_move_x - md_x;
+	ndy = m_move_y - md_y;
+	if (ndx<readImgInfos.left) { ndx=readImgInfos.left; }
+	if (ndx+imgSelectorInfo.width>readImgInfos.left+readImgInfos.narrowWidth) {
+		ndx=readImgInfos.left+readImgInfos.narrowWidth-imgSelectorInfo.width;
+	}
+	if (ndy<0) { ndy=0; }
+	if (ndy+imgSelectorInfo.height>430) {
+		ndy = 430-imgSelectorInfo.height;
+	}
 	if(isChosen){
-		//获取新div坐标，鼠标实时坐标 - 鼠标与div的偏移量
-		ndx = m_move_x - md_x;
-		ndy = m_move_y - md_y;
-		//把新div坐标值赋给div对象
-		imgChosenPart.style.left = ndx+"px";
-		imgChosenPart.style.top = ndy+"px";
+		imgChosenPart.style.left = String(ndx)+"px";
+		imgChosenPart.style.top = String(ndy)+"px";
+		if (md_x!==0) {
+			imgSelectorInfo.left = ndx;
+			imgCoverLayer[0].style.width = String(imgSelectorInfo.left)+'px';
+			imgCoverLayer[1].style.width = String(
+				(chosenImg.narrowWidth>1000?chosenImg.narrowWidth:1000)
+				-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';	
+			imgCoverLayer[1].style.left = String(ndx+imgSelectorInfo.width) + 'px';
+			imgCoverLayer[2].style.left = imgChosenPart.style.left;
+			imgCoverLayer[3].style.left = imgChosenPart.style.left;
+		}
+		if (md_y!==0) {
+			imgSelectorInfo.top = ndy;
+			imgCoverLayer[2].style.height = String(imgSelectorInfo.top) + 'px';
+			imgCoverLayer[3].style.height = String(
+				430-imgSelectorInfo.top-imgSelectorInfo.height
+				) + 'px';
+		}
 	}
 }

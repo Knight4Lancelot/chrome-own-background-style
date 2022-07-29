@@ -55,24 +55,24 @@
 #cover-layer-left {
 	left: 0;
 	height: 100%;
-	width: 300px;
+	/* width: 300px; */
 }
 #cover-layer-right {
 	right: 0;
 	height: 100%;
-	width: 400px;
+	/* width: 400px; */
 }
 #cover-layer-top {
 	top: 0;
-	left: 300px;
+	/* left: 300px;
 	height: 100px;
-	width: 300px;
+	width: 300px; */
 }
 #cover-layer-bottom {
 	bottom: 0;
-	left: 300px;
+	/* left: 300px;
 	height: 100px;
-	width: 300px;
+	width: 300px; */
 }
 
 
@@ -82,10 +82,10 @@
 	user-select: none;
 	position: inherit;
 	z-index: 6;
-	left: 100px;
+/* 	left: 100px;
 	top: 100px;
 	width: 300px;
-	height: 230px;
+	height: 230px; */
 }
 .corner-boundaries {
 	user-select: none;
@@ -149,7 +149,7 @@
 	font-size: 16px;
 	outline: none;
 }
-#choose-img {
+#choose-img-btn {
 	cursor: pointer;
 	position: inherit;
 	bottom: 40px;
