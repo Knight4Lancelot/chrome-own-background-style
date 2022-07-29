@@ -3,10 +3,25 @@ var naturalImgSize = {
 	height: 0,
 	width: 0
 };
-var readImgAttr = {
-	height: 0,
-	width: 0
+// 选择背景图片的时候缩小版的图片展示信息
+var readImgInfos = {
+	top: 0,
+	left: 0,
+	ratio: 1,
+	naturalWidth: 1920,
+	naturalHeight: 1080,
+	narrowWidth: 0,
+	narrowHeight: 430,
+	imgSrc: '0'
 };
+// 选择背景图片的时候选择框的信息
+var imgSelectorInfo = {
+	left: 0,
+	top: 0,
+	width: 0,
+	height: 0
+};
+readImgInfos.narrowWidth = 430*readImgInfos.naturalWidth/readImgInfos.naturalHeight;
 var inputFocus = false;
 var btnHover = false;
 var inputHover = false;
@@ -48,9 +63,11 @@ var outerPartList = document.getElementsByClassName('outer-part');
 var indexCoverLayer = document.getElementById('cover-layer');
 // 修改背景功能元素
 var changeBackgroundComponent = document.getElementById('change-background-img');
-var chosenImg = document.getElementById('choose-img');
+var chooseImgBtn = document.getElementById('choose-img');
 var ratioSetter = document.getElementById('change-img-ratio');
 var imgChosenPart = document.getElementById('img-chosen-part');
+var chosenImg = document.getElementById('chosen-img');
+
 
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
@@ -137,10 +154,12 @@ function init() {
 	searchBtn.style.left = String((pageWidth - 564)/2 + 484) + 'px';
 	timeClock.style.left = String((pageWidth - 370)/2-10) + 'px';
 	dateClock1.style.left = String((pageWidth - 155)/2) + 'px';
-	dateClock2.style.left = String((pageWidth - 120)/2) + 'px';
+	dateClock2.style.left = String((pageWidth - 80)/2) + 'px';
 	tools.style.left = String((pageWidth - 750)/2) + 'px';
 	changeBackgroundComponent.style.left = String((pageWidth - 1100)/2) + 'px';
-	
+	if (readImgInfos.narrowWidth<1000) {
+		chosenImg.style.left = String((1000-readImgInfos.narrowWidth)/2) + 'px';
+	}
 	// 功能按钮定位
 	for (var i = 0; i < btnList.length; i++) {
 		btnListLocation.left.push(20+i*150);

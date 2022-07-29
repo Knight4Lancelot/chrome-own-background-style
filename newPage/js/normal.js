@@ -3,10 +3,6 @@ function loadBackground() {
 	naturalImgSize.width = backgroundImg.naturalWidth;
 	var ratio, ratio1, ratio2;
 	var top = 0, left = 0;
-	// ratio1 = naturalImgSize.height / pageHeight;
-	// ratio2 = naturalImgSize.width / pageWidth;
-	// ratio = ratio1 < ratio2 ? ratio1 : ratio2;
-	// console.log(ratio);
 	ratio = 1;
 	backgroundImg.style.left = String(-top) + 'px';
 	backgroundImg.style.top = String(-left) + 'px';

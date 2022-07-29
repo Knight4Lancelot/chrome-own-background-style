@@ -45,7 +45,6 @@ function setChooserSize() {
 
 // 拖动选中区域div的代码部分
 function partChoose() {
-	console.log('chosen')
 	isChosen = true;
 	//获取鼠标按下时坐标
 	m_down_x = event.pageX;
@@ -53,7 +52,6 @@ function partChoose() {
 	//获取div坐标
 	dx = imgChosenPart.offsetLeft;
 	dy = imgChosenPart.offsetTop;
-	console.log(dx,dy)
 	//获取鼠标与div偏移量
 	md_x = m_down_x - dx;
 	md_y = m_down_y - dy;
