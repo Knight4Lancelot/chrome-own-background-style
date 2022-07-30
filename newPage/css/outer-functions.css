@@ -20,15 +20,15 @@
 	transition: 0.7s;
 	position: absolute;
 	z-index: 6;
-	/* top: -600px; */
-	top: 100px;
+	top: -600px;
+	/* top: 100px; */
 	height: 600px;
 	width: 1100px;
 	border-radius: 18px;
 	background-color: white;
 	border: 2px solid #C0C4CC;
-	/* visibility: hidden; */
-	visibility: visible;
+	visibility: hidden;
+	/* visibility: visible; */
 }
 #img-preview-area {
 	overflow-x: scroll;
@@ -124,21 +124,6 @@
 	position: inherit;
 	height: 430px;
 }
-#blank-img {
-	user-select: none;
-	position: inherit;
-	top: 140px;
-	left: 450px;
-	width: 100px;
-}
-#blank-description {
-	user-select: none;
-	position: inherit;
-	top: 270px;
-	left: 420px;
-	font-size: 18px;
-	color: #909399;
-}
 #change-img-ratio {
 	width: 40px;
 	height: 25px;
@@ -150,6 +135,7 @@
 	outline: none;
 }
 #choose-img-btn {
+	transition: 0.2s;
 	cursor: pointer;
 	position: inherit;
 	bottom: 40px;
@@ -163,6 +149,7 @@
 	font-family: "Microsoft YaHei";
 }
 #confirm-set-background {
+	transition: 0.2s;
 	cursor: pointer;
 	position: inherit;
 	bottom: 40px;

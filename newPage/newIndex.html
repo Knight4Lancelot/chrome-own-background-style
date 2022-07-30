@@ -80,12 +80,12 @@
 					<div class="corner-boundaries" id="boundaries-bottom-right"></div>
 				</div>
 				<img id="chosen-img" src="../assets/background-buffer.png">
-				<img id="blank-img" src="../assets/blank-file.png">
-				<span id="blank-description">当前暂无图片被选择</span>
 			</div>
 			<span style="position:inherit;bottom:45px;left:50px;font-size:18px;color:#606266;">当前放缩比例：
 				<input type="text" id="change-img-ratio" maxlength="3" placeholder="100"> %
 			</span>
+			<input type="file" id="select-files-btn"
+				style="visibility: hidden;">
 			<button id="choose-img-btn">选择图片</button>
 			<button id="confirm-set-background">确定使用</button>
 		</div>
@@ -93,7 +93,7 @@
 		<script type="text/javascript" src="js/init-params.js"></script>
 		<script type="text/javascript" src="js/normal.js"></script>
 		<script type="text/javascript" src="js/function-entry-btns.js"></script>
-		<script type="text/javascript" src="js/outer-part.js"></script>
+		<script type="text/javascript" src="js/change-background.js"></script>
 		<script type="text/javascript" src="js/background-db-operations.js"></script>
 	</body>
 </html>

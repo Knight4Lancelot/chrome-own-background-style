@@ -8,13 +8,13 @@ var imgLeft, imgTop, ratio, imgSource;
 		isExist		int			是否已经有用户选中的图片存在
 		top			int			背景图片定位
 		left		int			背景图片定位
-		ratio		float		放缩比例
+		ratio		int		放缩比例
 		imgData		BLOB		背景图片二进制流数据
 */
 // 若数据库中相关表不存在，则初始化表
 function initDBTable() {
-	var sqlCreate = 'create table imgAttrs(isExist int, left int, top int, ratio float, imgData BLOB);';
-	var sqlInitData = 'insert into imgAttrs values(0,0,0,1,"0");';
+	var sqlCreate = 'create table imgAttrs(isExist int, left int, top int, ratio int, imgData BLOB);';
+	var sqlInitData = 'insert into imgAttrs values(0,0,0,100,"0");';
 	db.transaction(function (tx) {
 		tx.executeSql(sqlCreate, [],
 			function (tx, results) { console.log(results) },
@@ -44,11 +44,12 @@ function readDBTableData() {
 				var len = results.rows.length, i;
 				for (i = 0; i < len; i++){
 					console.log(results.rows.item(i) );
+					
 				}
 			},
 			function() {
-				init();
-				getInfos();
+				initDBTable();
+				readDBTableData();
 			})
 	});
 }

@@ -1,10 +1,58 @@
-
 var isChosen = false;
 var m_move_x, m_move_y,
 	m_down_x, m_down_y,
 	dx, dy,
 	md_x, md_y,
 	ndx, ndy;
+
+function getPicture(obj){
+	var fileInfo = obj.files[0].name.split('.');
+	var imgSource;
+	switch (fileInfo[fileInfo.length-1]) {
+		case "png":
+		case "jpeg":	
+		case "jpg": break;
+		default: alert('文件类型不合要求'); return;
+	}
+	if (typeof FileReader != "undefined") {
+		var reader = new FileReader();
+		reader.onload = function(e) {
+			imgSource = e.target.result;
+			chosenImg.src = e.target.result;
+			// updateInfo(e.target.result)
+		}
+		reader.readAsDataURL(obj.files[0]);
+		setTimeout(()=>{
+			// console.log(chosenImg.naturalHeight, chosenImg.naturalWidth);
+			readImgInfos.naturalWidth = chosenImg.naturalWidth;
+			readImgInfos.naturalHeight = chosenImg.naturalHeight;
+			readImgInfos.ratio = 100;
+			readImgInfos.imgSrc = imgSource;
+			initImgChoosePartSize();
+		}, 100);
+	} else if (browserVersion.indexOf("SAFARI") > -1) {
+		alert("暂时不支持Safari浏览器!");
+	}
+}
+
+function changeBtnStyle(element, status) {
+	element.style['background-color'] = status ? '#409EFF' : '#D8EBFF';
+	element.style['color'] = status ? 'white' : '#0A84FF';
+}
+
+function confirmToSetBackground() {
+	if (isExist) { backgroundImg.src = readImgInfos.imgSrc; };
+	backgroundImg.style.height = String(100*readImgInfos.naturalHeight/readImgInfos.ratio) + 'px';
+	backgroundImg.style.width = String(100*readImgInfos.naturalWidth/readImgInfos.ratio) + 'px';
+	readImgInfos.offsetLeft = -(
+		pageWidth*(imgSelectorInfo.left-readImgInfos.left)/imgSelectorInfo.width
+	);
+	backgroundImg.style.left = String(readImgInfos.offsetLeft) + 'px';
+	readImgInfos.offsetTop = -(
+		pageHeight*imgSelectorInfo.top/imgSelectorInfo.height
+	);
+	backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';
+}
 
 function setBtnStatus(index, status) {
 	if (status) {
@@ -26,11 +74,11 @@ function showChangeBackground() {
 	changeBackgroundComponent.style.top = String((pageHeight-600)/2)+'px';
 }
 
-function changeRatio(value) {
+function changeRatio(value, status) {
 	var ratio = ratioSetter.value;
 	if (ratio.length===0) { ratio = 100; }
 	else { ratio = parseInt(parseFloat(ratio)); }
-	ratio += (value>0?1:-1);
+	if (!status) { ratio += (value>0?1:-1); }
 	if (ratio>readImgInfos.maxratio) {
 		ratio = readImgInfos.maxratio;
 	} else if (ratio<readImgInfos.minratio) {
@@ -45,26 +93,44 @@ function changeRatio(value) {
 	imgChosenPart.style.height = String(imgSelectorInfo.height) + 'px';
 	imgCoverLayer[2].style.width = String(imgSelectorInfo.width) + 'px';
 	imgCoverLayer[3].style.width = String(imgSelectorInfo.width) + 'px';
-	if (imgSelectorInfo.left+imgSelectorInfo.width<readImgInfos.left+readImgInfos.narrowWidth) {
+	if (status) {
+		imgSelectorInfo.left = readImgInfos.left;
+		imgSelectorInfo.top = 0;
+		imgCoverLayer[0].style.width = String(readImgInfos.left) + 'px';
 		imgCoverLayer[1].style.width = String(
 			(chosenImg.narrowWidth>1000?chosenImg.narrowWidth:1000)
 			-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';	
 		imgCoverLayer[1].style.left = String(imgSelectorInfo.left+imgSelectorInfo.width) + 'px';
-	} else {
-		imgSelectorInfo.left -= change*imgSelectorInfo.initWidth/100;
-		imgCoverLayer[0].style.width = String(imgSelectorInfo.left) + 'px';
-		imgCoverLayer[2].style.left = String(imgSelectorInfo.left) + 'px';
-		imgCoverLayer[3].style.left = String(imgSelectorInfo.left) + 'px';
-		imgChosenPart.style.left = String(imgSelectorInfo.left) + 'px';
-	}
-	if (imgSelectorInfo.top+imgSelectorInfo.height<430) {
+		imgCoverLayer[2].style.left = String(readImgInfos.left) + 'px';
+		imgCoverLayer[2].style.height = '0px';
+		imgCoverLayer[3].style.left = String(readImgInfos.left) + 'px';
 		imgCoverLayer[3].style.height = String(
 			430-imgSelectorInfo.top-imgSelectorInfo.height
 			) + 'px';
+		imgChosenPart.style.top = '0px';
+		imgChosenPart.style.left = String(imgSelectorInfo.left) + 'px';
 	} else {
-		imgSelectorInfo.top -= change*imgSelectorInfo.initHeight/100;
-		imgCoverLayer[2].style.height = String(imgSelectorInfo.top) + 'px';
-		imgChosenPart.style.top = String(imgSelectorInfo.top) + 'px';
+		if (imgSelectorInfo.left+imgSelectorInfo.width<readImgInfos.left+readImgInfos.narrowWidth) {
+			imgCoverLayer[1].style.width = String(
+				(chosenImg.narrowWidth>1000?chosenImg.narrowWidth:1000)
+				-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';	
+			imgCoverLayer[1].style.left = String(imgSelectorInfo.left+imgSelectorInfo.width) + 'px';
+		} else {
+			imgSelectorInfo.left -= change*imgSelectorInfo.initWidth/100;
+			imgCoverLayer[0].style.width = String(imgSelectorInfo.left) + 'px';
+			imgCoverLayer[2].style.left = String(imgSelectorInfo.left) + 'px';
+			imgCoverLayer[3].style.left = String(imgSelectorInfo.left) + 'px';
+			imgChosenPart.style.left = String(imgSelectorInfo.left) + 'px';
+		}
+		if (imgSelectorInfo.top+imgSelectorInfo.height<430) {
+			imgCoverLayer[3].style.height = String(
+				430-imgSelectorInfo.top-imgSelectorInfo.height
+				) + 'px';
+		} else {
+			imgSelectorInfo.top -= change*imgSelectorInfo.initHeight/100;
+			imgCoverLayer[2].style.height = String(imgSelectorInfo.top) + 'px';
+			imgChosenPart.style.top = String(imgSelectorInfo.top) + 'px';
+		}
 	}
 }
 

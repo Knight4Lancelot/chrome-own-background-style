@@ -3,10 +3,17 @@ var naturalImgSize = {
 	height: 0,
 	width: 0
 };
-// 选择背景图片的时候缩小版的图片展示信息
+/*
+	选择背景图片的时候缩小版的图片展示信息
+		readImgInfos初始化时只需要填充naturalWidth，naturalHeight即可
+		其余的用initImgChoosePartSize()函数即可
+*/
+var isExist = false;
 var readImgInfos = {
 	top: 0,
-	left: 0,
+	left: 0, // 这俩是在略缩状态下距离边框的偏移量
+	offsetLeft: 0,
+	offsetTop: -70, // 这俩是实际上相对浏览器可视区域的偏移量
 	ratio: 100,
 	minratio: 100,
 	maxratio: 100,
@@ -38,6 +45,7 @@ var hiddenNameList = {
 };
 
 var body = document.getElementById('main-body');
+var pageCoverLayer = document.getElementById('cover-layer');
 var backgroundImg = document.getElementById('body-background');
 var searchBtnIcon = document.getElementById('btn-cover-icon');
 var searchInput = document.getElementById('search-input');
@@ -67,12 +75,16 @@ var indexCoverLayer = document.getElementById('cover-layer');
 // 修改背景功能元素
 var changeBackgroundComponent = document.getElementById('change-background-img');
 var chooseImgBtn = document.getElementById('choose-img-btn');
+var confirmSetBtn = document.getElementById('confirm-set-background');
 var ratioSetter = document.getElementById('change-img-ratio');
 var imgChosenPart = document.getElementById('img-chosen-part');
 var chosenImg = document.getElementById('chosen-img');
 var imgCoverLayer = document.getElementsByClassName('choose-img-cover-layer');
 var imgChosenPart = document.getElementById('img-chosen-part');
 var imgChosenCornerList = document.getElementsByClassName('corner-boundaries');
+var chooseImgBtn = document.getElementById('choose-img-btn');
+var selectFileBtn = document.getElementById('select-files-btn');
+
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
@@ -104,6 +116,14 @@ imgChosenPart.onmousedown = function() { partChoose(); }; // outer-part.js
 imgChosenPart.onmouseup = function() { partRelease(); }; // outer-part.js
 imgChosenPart.onmouseout = function() { partRelease(); }; // outer-part.js
 imgChosenPart.onmousemove = function() { partMove() }; // outer-part.js
+ratioSetter.onblur = function() { changeRatio(0, true); }; // outer-part.js
+chooseImgBtn.onmouseover = function() { changeBtnStyle(chooseImgBtn, true); }; // outer-part.js
+chooseImgBtn.onmouseout = function() { changeBtnStyle(chooseImgBtn, false); }; // outer-part.js
+chooseImgBtn.onclick = function() { selectFileBtn.click(); };
+selectFileBtn.onchange = function() { getPicture(this); };
+confirmSetBtn.onmouseover = function() { changeBtnStyle(confirmSetBtn, true); }; // outer-part.js
+confirmSetBtn.onmouseout = function() { changeBtnStyle(confirmSetBtn, false); }; // outer-part.js
+confirmSetBtn.onclick = function() { confirmToSetBackground(); }; // outer-part.js
 
 for (let i = 0; i < nameList.length; i++) {
 	nameList[i].onmouseover = function() { changeNameVisible(i, true); };
@@ -123,7 +143,7 @@ document.onkeypress = function() {
 
 document.onmousewheel = function() {
 	if (changeBackgroundComponent.style.visibility==="visible") {
-		changeRatio(window.event.wheelDelta);
+		changeRatio(window.event.wheelDelta, false);
 	}
 }
 
@@ -159,15 +179,39 @@ function init() {
 	searchBtn.style.left = String((pageWidth - 564)/2 + 484) + 'px';
 	timeClock.style.left = String((pageWidth - 370)/2-10) + 'px';
 	dateClock1.style.left = String((pageWidth - 155)/2) + 'px';
-	dateClock2.style.left = String((pageWidth - 80)/2) + 'px';
+	dateClock2.style.left = String((pageWidth - 110)/2) + 'px';
 	tools.style.left = String((pageWidth - 750)/2) + 'px';
 	changeBackgroundComponent.style.left = String((pageWidth - 1100)/2) + 'px';
-	// 修改背景图片元素的大小初始化
+	
+	if (!isExist) {
+		backgroundImg.style.height = String(readImgInfos.naturalHeight/1.25) + 'px';
+		backgroundImg.style.width = String(readImgInfos.naturalWidth/1.25) + 'px';
+		backgroundImg.style.left = String(readImgInfos.offsetLeft) + 'px';
+		backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';
+		
+	}
+	
+	// 初始化选择背景图片的一系列组件的大小
+	initImgChoosePartSize();
+	
+	// 功能按钮定位
+	for (var i = 0; i < btnList.length; i++) {
+		btnListLocation.left.push(20+i*150);
+		btnListLocation.top.push(20);
+		btnList[i].style.left = String(btnListLocation.left[i]) + 'px';
+		btnList[i].style.top = String(btnListLocation.top[i]) + 'px';
+		nameList[i].style.left = String(btnListLocation.left[i]+5) + 'px';
+		nameList[i].style.top = String(btnListLocation.top[i]+55) + 'px';
+		hiddenNameList.btn.push(false);
+		hiddenNameList.span.push(false);
+	}
+}
+
+function initImgChoosePartSize() {
 	readImgInfos.narrowWidth = 430*readImgInfos.naturalWidth/readImgInfos.naturalHeight;
 	readImgInfos.left = (1000-readImgInfos.narrowWidth)/2;
-	if (readImgInfos.narrowWidth<1000) {
-		chosenImg.style.left = String(readImgInfos.left) + 'px';
-	}
+	if (readImgInfos.left<0) { readImgInfos.left=0; }
+	chosenImg.style.left = String(readImgInfos.left) + 'px';
 	imgSelectorInfo.height = 430*pageHeight/readImgInfos.naturalHeight;
 	if (imgSelectorInfo.height>430) {
 		imgSelectorInfo.height = 430;
@@ -199,16 +243,9 @@ function init() {
 	r1 = 100/imgSelectorInfo.initHeight;
 	r2 = 100/imgSelectorInfo.initWidth;
 	readImgInfos.minratio = (r1 > r2 ? r1 : r2) * 100;
-	
-	// 功能按钮定位
-	for (var i = 0; i < btnList.length; i++) {
-		btnListLocation.left.push(20+i*150);
-		btnListLocation.top.push(20);
-		btnList[i].style.left = String(btnListLocation.left[i]) + 'px';
-		btnList[i].style.top = String(btnListLocation.top[i]) + 'px';
-		nameList[i].style.left = String(btnListLocation.left[i]+5) + 'px';
-		nameList[i].style.top = String(btnListLocation.top[i]+55) + 'px';
-		hiddenNameList.btn.push(false);
-		hiddenNameList.span.push(false);
+	if (readImgInfos.ratio>readImgInfos.maxratio) {
+		readImgInfos.ratio = readImgInfos.maxratio;
+		ratioSetter.value = String(parseInt(readImgInfos.ratio));
+		changeRatio(0, true);
 	}
 }
