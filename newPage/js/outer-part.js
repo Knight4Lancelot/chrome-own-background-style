@@ -31,12 +31,13 @@ function changeRatio(value) {
 	if (ratio.length===0) { ratio = 100; }
 	else { ratio = parseInt(parseFloat(ratio)); }
 	ratio += (value>0?1:-1);
-	if (ratio>readImgInfos.maxratio*100) {
-		ratio = readImgInfos.maxratio*100;
-	} else if (ratio<readImgInfos.minratio*100) {
-		ratio = readImgInfos.minratio*100;
+	if (ratio>readImgInfos.maxratio) {
+		ratio = readImgInfos.maxratio;
+	} else if (ratio<readImgInfos.minratio) {
+		ratio = readImgInfos.minratio;
 	}
 	ratioSetter.value = String(parseInt(ratio));
+	var change = ratio-readImgInfos.ratio;
 	readImgInfos.ratio = ratio;
 	imgSelectorInfo.width = imgSelectorInfo.initWidth*ratio/100;
 	imgSelectorInfo.height = imgSelectorInfo.initHeight*ratio/100;
@@ -50,19 +51,21 @@ function changeRatio(value) {
 			-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';	
 		imgCoverLayer[1].style.left = String(imgSelectorInfo.left+imgSelectorInfo.width) + 'px';
 	} else {
-		return;
+		imgSelectorInfo.left -= change*imgSelectorInfo.initWidth/100;
+		imgCoverLayer[0].style.width = String(imgSelectorInfo.left) + 'px';
+		imgCoverLayer[2].style.left = String(imgSelectorInfo.left) + 'px';
+		imgCoverLayer[3].style.left = String(imgSelectorInfo.left) + 'px';
+		imgChosenPart.style.left = String(imgSelectorInfo.left) + 'px';
 	}
 	if (imgSelectorInfo.top+imgSelectorInfo.height<430) {
 		imgCoverLayer[3].style.height = String(
 			430-imgSelectorInfo.top-imgSelectorInfo.height
 			) + 'px';
 	} else {
-		return;
+		imgSelectorInfo.top -= change*imgSelectorInfo.initHeight/100;
+		imgCoverLayer[2].style.height = String(imgSelectorInfo.top) + 'px';
+		imgChosenPart.style.top = String(imgSelectorInfo.top) + 'px';
 	}
-}
-
-function setChooserSize() {
-	
 }
 
 // 拖动选中区域div的代码部分

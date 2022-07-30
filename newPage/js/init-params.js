@@ -7,9 +7,9 @@ var naturalImgSize = {
 var readImgInfos = {
 	top: 0,
 	left: 0,
-	ratio: 1,
-	minratio: 1,
-	maxratio: 1,
+	ratio: 100,
+	minratio: 100,
+	maxratio: 100,
 	naturalWidth: 1920,
 	naturalHeight: 1080,
 	narrowWidth: 0,
@@ -195,11 +195,11 @@ function init() {
 		) + 'px';
 	var r1 = 430/imgSelectorInfo.initHeight,
 		r2 = readImgInfos.narrowWidth/imgSelectorInfo.initWidth;
-	readImgInfos.maxratio = r1 < r2 ? r1 : r2;
+	readImgInfos.maxratio = (r1 < r2 ? r1 : r2) * 100;
 	r1 = 100/imgSelectorInfo.initHeight;
 	r2 = 100/imgSelectorInfo.initWidth;
-	console.log(r1, r2)
-	readImgInfos.minratio = r1 > r2 ? r1 : r2;
+	readImgInfos.minratio = (r1 > r2 ? r1 : r2) * 100;
+	
 	// 功能按钮定位
 	for (var i = 0; i < btnList.length; i++) {
 		btnListLocation.left.push(20+i*150);
