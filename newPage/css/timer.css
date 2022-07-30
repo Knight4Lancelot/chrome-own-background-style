@@ -5,7 +5,8 @@
 	top: 130px;
 	font-size: 80px;
 	font-weight: 500;
-	color: #606266;
+	/* color: #606266; */
+	color: aliceblue;
 }
 #date-clock-1 {
 	user-select: none;

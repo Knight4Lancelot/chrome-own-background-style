@@ -8,6 +8,7 @@ var m_move_x, m_move_y,
 function getPicture(obj){
 	var fileInfo = obj.files[0].name.split('.');
 	var imgSource;
+	isChange = true;
 	switch (fileInfo[fileInfo.length-1]) {
 		case "png":
 		case "jpeg":	
@@ -41,7 +42,7 @@ function changeBtnStyle(element, status) {
 }
 
 function confirmToSetBackground() {
-	if (isExist) { backgroundImg.src = readImgInfos.imgSrc; };
+	backgroundImg.src = readImgInfos.imgSrc;
 	backgroundImg.style.height = String(100*readImgInfos.naturalHeight/readImgInfos.ratio) + 'px';
 	backgroundImg.style.width = String(100*readImgInfos.naturalWidth/readImgInfos.ratio) + 'px';
 	readImgInfos.offsetLeft = -(
@@ -52,6 +53,16 @@ function confirmToSetBackground() {
 		pageHeight*imgSelectorInfo.top/imgSelectorInfo.height
 	);
 	backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';
+	var attrs = [
+		{ attrName: "isExist", attrValue: isExist?1:0 },
+		{ attrName: "left", attrValue: parseInt(readImgInfos.offsetLeft) },
+		{ attrName: "top", attrValue: parseInt(readImgInfos.offsetTop) },
+		{ attrName: "ratio", attrValue: parseInt(readImgInfos.ratio) },
+	];
+	if (isChange) {
+		attrs.push({ attrName: "imgData", attrValue: readImgInfos.imgSrc });
+	}
+	updateAttrs(attrs);
 }
 
 function setBtnStatus(index, status) {
@@ -99,7 +110,7 @@ function changeRatio(value, status) {
 		imgCoverLayer[0].style.width = String(readImgInfos.left) + 'px';
 		imgCoverLayer[1].style.width = String(
 			(chosenImg.narrowWidth>1000?chosenImg.narrowWidth:1000)
-			-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';	
+			-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';
 		imgCoverLayer[1].style.left = String(imgSelectorInfo.left+imgSelectorInfo.width) + 'px';
 		imgCoverLayer[2].style.left = String(readImgInfos.left) + 'px';
 		imgCoverLayer[2].style.height = '0px';
@@ -110,18 +121,19 @@ function changeRatio(value, status) {
 		imgChosenPart.style.top = '0px';
 		imgChosenPart.style.left = String(imgSelectorInfo.left) + 'px';
 	} else {
-		if (imgSelectorInfo.left+imgSelectorInfo.width<readImgInfos.left+readImgInfos.narrowWidth) {
-			imgCoverLayer[1].style.width = String(
-				(chosenImg.narrowWidth>1000?chosenImg.narrowWidth:1000)
-				-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';	
-			imgCoverLayer[1].style.left = String(imgSelectorInfo.left+imgSelectorInfo.width) + 'px';
-		} else {
+		if (imgSelectorInfo.left+imgSelectorInfo.width>readImgInfos.left+readImgInfos.narrowWidth) {
 			imgSelectorInfo.left -= change*imgSelectorInfo.initWidth/100;
+			if (imgSelectorInfo.left<readImgInfos.left) { imgSelectorInfo.left=readImgInfos.left; }
+			imgCoverLayer[1].style.left = String(imgSelectorInfo.left+imgSelectorInfo.width) + 'px';	
 			imgCoverLayer[0].style.width = String(imgSelectorInfo.left) + 'px';
 			imgCoverLayer[2].style.left = String(imgSelectorInfo.left) + 'px';
 			imgCoverLayer[3].style.left = String(imgSelectorInfo.left) + 'px';
 			imgChosenPart.style.left = String(imgSelectorInfo.left) + 'px';
 		}
+		imgCoverLayer[1].style.width = String(
+			(chosenImg.narrowWidth>1000?chosenImg.narrowWidth:1000)
+			-imgSelectorInfo.width-imgSelectorInfo.left) + 'px';	
+		imgCoverLayer[1].style.left = String(imgSelectorInfo.left+imgSelectorInfo.width) + 'px';
 		if (imgSelectorInfo.top+imgSelectorInfo.height<430) {
 			imgCoverLayer[3].style.height = String(
 				430-imgSelectorInfo.top-imgSelectorInfo.height
@@ -137,6 +149,7 @@ function changeRatio(value, status) {
 // 拖动选中区域div的代码部分
 function partChoose() {
 	isChosen = true;
+	isExist = true;
 	for (let i = 0; i < imgChosenCornerList.length; i++) {
 		imgChosenCornerList[i].style['border-color'] = '#2E95FF';
 	}

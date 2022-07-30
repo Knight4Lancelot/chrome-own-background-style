@@ -9,6 +9,7 @@ var naturalImgSize = {
 		其余的用initImgChoosePartSize()函数即可
 */
 var isExist = false;
+var isChange = false;
 var readImgInfos = {
 	top: 0,
 	left: 0, // 这俩是在略缩状态下距离边框的偏移量
@@ -90,7 +91,10 @@ var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
 
 
-body.onload = function() { init(); }; // normal.js
+body.onload = function() { 
+	readDBTableData();
+	setTimeout(()=>{ init(); }, 100);	
+}; // normal.js
 // 搜索框函数设置
 searchBtn.onmouseover = function() { searchBtnStatus(true); }; // normal.js
 searchBtn.onmouseout = function() { searchBtnStatus(false); }; // normal.js
@@ -101,10 +105,10 @@ searchInput.onmouseover = function() { searchInputIsOver(true); }; // normal.js
 searchInput.onmouseout = function() { searchInputIsOver(false); }; // normal.js
 
 // 常用功能列表的函数设置
-webCollections.onmouseover = function() { changeBtnSize(0, true); }; // function-entry-btns.js
-webCollections.onmouseout = function() { changeBtnSize(0, false); }; // function-entry-btns.js
-setBackground.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
-setBackground.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
+setBackground.onmouseover = function() { changeBtnSize(0, true); }; // function-entry-btns.js
+setBackground.onmouseout = function() { changeBtnSize(0, false); }; // function-entry-btns.js
+webCollections.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
+webCollections.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
 setBackground.onclick = function() { showChangeBackground(); }; // outerPart.js
 recordIssue.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
 recordIssue.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js
@@ -136,8 +140,8 @@ for (let i = 0; i < closeBtnsList.length; i++) { // outer-part.js
 }
 
 document.onkeypress = function() {
-	if (event.keyCode==13) {
-		jump2URL();
+	switch(event.keyCode) {
+		case 13: jump2URL(); break;
 	}
 }
 
@@ -183,12 +187,13 @@ function init() {
 	tools.style.left = String((pageWidth - 750)/2) + 'px';
 	changeBackgroundComponent.style.left = String((pageWidth - 1100)/2) + 'px';
 	
-	if (!isExist) {
-		backgroundImg.style.height = String(readImgInfos.naturalHeight/1.25) + 'px';
-		backgroundImg.style.width = String(readImgInfos.naturalWidth/1.25) + 'px';
-		backgroundImg.style.left = String(readImgInfos.offsetLeft) + 'px';
-		backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';
-		
+	backgroundImg.style.height = String(100*readImgInfos.naturalHeight/readImgInfos.ratio) + 'px';
+	backgroundImg.style.width = String(100*readImgInfos.naturalWidth/readImgInfos.ratio) + 'px';
+	backgroundImg.style.left = String(readImgInfos.offsetLeft) + 'px';
+	backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';
+	if (isExist) {
+		backgroundImg.src = readImgInfos.imgSrc;
+		chosenImg.src = readImgInfos.imgSrc;
 	}
 	
 	// 初始化选择背景图片的一系列组件的大小

@@ -41,10 +41,15 @@ function readDBTableData() {
 	db.transaction(function (tx) {
 		tx.executeSql(sql, [],
 			function (tx, results) {
-				var len = results.rows.length, i;
-				for (i = 0; i < len; i++){
-					console.log(results.rows.item(i) );
-					
+				var res = results.rows.item(0);
+				console.log(res);
+				isExist = (res.isExist===0);
+				if (isExist) {
+					readImgInfos.offsetTop = res.left;
+					readImgInfos.offsetLeft = res.top;
+					readImgInfos.ratio = res.ratio;
+					readImgInfos.imgSrc = res.imgData;
+					chosenImg.imgSrc = res.imgData;
 				}
 			},
 			function() {
@@ -63,7 +68,7 @@ function readDBTableData() {
 // 	{ attrName: "name5", attrValue: '5' }
 // ])
 function updateAttrs(attrList) {
-	var sql = 'update test set', attrs = [];
+	var sql = 'update imgAttrs set', attrs = [];
 	for (var i = 0; i < attrList.length; i++) {
 		sql += (' '+attrList[i].attrName+'=?');
 		if (i<attrList.length-1) {
