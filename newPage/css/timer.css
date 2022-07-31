@@ -1,27 +1,46 @@
-#time-clock {
-	user-select: none;
+#Timer {
+	cursor: pointer;
 	position: absolute;
 	z-index: 2;
-	top: 130px;
-	font-size: 80px;
+	top: 100px;
+	width: 600px;
+	height: 250px;
+	/* background: rgba(255,255,255,0.5); */
+	/* border-radius: 30px; */
+}
+#time-clock {
+	transition: 0.5s;
+	opacity: 1;
+	user-select: none;
+	position: inherit;
+	z-index: 3;
+	top: 30px;
+	left: 50px;
+	font-size: 100px;
 	font-weight: 500;
-	/* color: #606266; */
-	color: aliceblue;
+	color: #606266;
+	/* color: aliceblue; */
 }
 #date-clock-1 {
+	transition: 0.5s;
+	opacity: 1;
 	user-select: none;
-	position: absolute;
-	z-index: 2;
-	top: 270px;
+	position: inherit;
+	z-index: 3;
+	top: 170px;
+	left: 210px;
 	font-size: 16px;
 	color: #63656C;
 	font-weight: 500;
 }
 #date-clock-2 {
+	transition: 0.5s;
+	opacity: 1;
 	user-select: none;
-	position: absolute;
-	z-index: 2;
-	top: 300px;
+	position: inherit;
+	z-index: 3;
+	top: 200px;
+	left: 245px;
 	font-size: 20px;
 	color: #63656C;
 	font-family: "Cascadia mono";

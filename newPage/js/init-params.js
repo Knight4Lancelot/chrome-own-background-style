@@ -51,9 +51,10 @@ var backgroundImg = document.getElementById('body-background');
 var searchBtnIcon = document.getElementById('btn-cover-icon');
 var searchInput = document.getElementById('search-input');
 var searchBtn = document.getElementById('confirm-search-btn');
+var timer = document.getElementById('Timer');
+var timeClock = document.getElementById('time-clock');
 var dateClock1 = document.getElementById('date-clock-1');
 var dateClock2 = document.getElementById('date-clock-2');
-var timeClock = document.getElementById('time-clock');
 var tools = document.getElementById('tools');
 
 // 功能按钮与功能名称描述集合
@@ -86,9 +87,6 @@ var imgChosenCornerList = document.getElementsByClassName('corner-boundaries');
 var chooseImgBtn = document.getElementById('choose-img-btn');
 var selectFileBtn = document.getElementById('select-files-btn');
 
-// 修改时间的样式模块
-
-
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
@@ -108,13 +106,14 @@ searchInput.onmouseover = function() { searchInputIsOver(true); }; // normal.js
 searchInput.onmouseout = function() { searchInputIsOver(false); }; // normal.js
 
 // 常用功能列表的函数设置
+timer.onclick = function() { changeTimerColor(); };
 setBackground.onmouseover = function() { changeBtnSize(0, true); }; // function-entry-btns.js
 setBackground.onmouseout = function() { changeBtnSize(0, false); }; // function-entry-btns.js
-webTimerStyle.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
-webTimerStyle.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
 setBackground.onclick = function() { showChangeBackground(); }; // outerPart.js
-recordIssue.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
-recordIssue.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js
+recordIssue.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
+recordIssue.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
+webTimerStyle.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
+webTimerStyle.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js
 moreFunctions.onmouseover = function() { changeBtnSize(3, true); }; // function-entry-btns.js
 moreFunctions.onmouseout = function() { changeBtnSize(3, false); }; // function-entry-btns.js
 
@@ -184,9 +183,10 @@ function init() {
 	body.style.height = String(pageHeight) + 'px';
 	searchInput.style.left = String((pageWidth - 564)/2) + 'px';
 	searchBtn.style.left = String((pageWidth - 564)/2 + 484) + 'px';
-	timeClock.style.left = String((pageWidth - 370)/2-10) + 'px';
-	dateClock1.style.left = String((pageWidth - 155)/2) + 'px';
-	dateClock2.style.left = String((pageWidth - 110)/2) + 'px';
+	// timeClock.style.left = String((pageWidth - 400)/2-10) + 'px';
+	// dateClock1.style.left = String((pageWidth - 155)/2) + 'px';
+	// dateClock2.style.left = String((pageWidth - 110)/2) + 'px';
+	timer.style.left = String((pageWidth - 600)/2+20) + 'px';
 	tools.style.left = String((pageWidth - 750)/2) + 'px';
 	changeBackgroundComponent.style.left = String((pageWidth - 1100)/2) + 'px';
 	

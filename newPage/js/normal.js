@@ -10,6 +10,19 @@ function loadBackground() {
 	backgroundImg.style.height = String(naturalImgSize.height/ratio) + 'px';
 }
 
+function changeTimerColor() {
+	console.log(dateClock1.style.color)
+	if (timeClock.style.color === 'rgb(96, 98, 102)') {
+		timeClock.style.color = 'white';
+		dateClock1.style.color = 'white';
+		dateClock2.style.color = 'white';
+	} else {
+		timeClock.style.color = 'rgb(96, 98, 102)';
+		dateClock1.style.color = 'rgb(99, 101, 108)';
+		dateClock2.style.color = 'rgb(99, 101, 108)';
+	}
+}
+
 function setInputShow(status) {
 	if (status) {
 		searchInput.style.border = "2px solid #4CA4FF";
