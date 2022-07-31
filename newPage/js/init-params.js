@@ -187,14 +187,16 @@ function init() {
 	tools.style.left = String((pageWidth - 750)/2) + 'px';
 	changeBackgroundComponent.style.left = String((pageWidth - 1100)/2) + 'px';
 	
-	backgroundImg.style.height = String(100*readImgInfos.naturalHeight/readImgInfos.ratio) + 'px';
-	backgroundImg.style.width = String(100*readImgInfos.naturalWidth/readImgInfos.ratio) + 'px';
-	backgroundImg.style.left = String(readImgInfos.offsetLeft) + 'px';
-	backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';
 	if (isExist) {
 		backgroundImg.src = readImgInfos.imgSrc;
 		chosenImg.src = readImgInfos.imgSrc;
+		readImgInfos.naturalHeight = backgroundImg.naturalHeight;
+		readImgInfos.naturalWidth = backgroundImg.naturalWidth;
 	}
+	backgroundImg.style.height = String(100*readImgInfos.naturalHeight/readImgInfos.ratio) + 'px';
+	backgroundImg.style.width = String(100*readImgInfos.naturalWidth/readImgInfos.ratio) + 'px';
+	backgroundImg.style.left = String(readImgInfos.offsetLeft) + 'px';
+	backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';		
 	
 	// 初始化选择背景图片的一系列组件的大小
 	initImgChoosePartSize();

@@ -28,7 +28,7 @@ function getPicture(obj){
 			readImgInfos.naturalWidth = chosenImg.naturalWidth;
 			readImgInfos.naturalHeight = chosenImg.naturalHeight;
 			readImgInfos.ratio = 100;
-			readImgInfos.imgSrc = imgSource;
+			readImgInfos.imgSrc = chosenImg.src;
 			initImgChoosePartSize();
 		}, 100);
 	} else if (browserVersion.indexOf("SAFARI") > -1) {
@@ -42,7 +42,7 @@ function changeBtnStyle(element, status) {
 }
 
 function confirmToSetBackground() {
-	backgroundImg.src = readImgInfos.imgSrc;
+	backgroundImg.src = chosenImg.src;
 	backgroundImg.style.height = String(100*readImgInfos.naturalHeight/readImgInfos.ratio) + 'px';
 	backgroundImg.style.width = String(100*readImgInfos.naturalWidth/readImgInfos.ratio) + 'px';
 	readImgInfos.offsetLeft = -(

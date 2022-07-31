@@ -43,11 +43,11 @@ function readDBTableData() {
 			function (tx, results) {
 				var res = results.rows.item(0);
 				console.log(res);
-				isExist = (res.isExist===0);
+				isExist = !(res.isExist===0);
 				if (isExist) {
-					readImgInfos.offsetTop = res.left;
-					readImgInfos.offsetLeft = res.top;
-					readImgInfos.ratio = res.ratio;
+					readImgInfos.offsetTop = res.top-5;
+					readImgInfos.offsetLeft = res.left-5;
+					readImgInfos.ratio = res.ratio-1;
 					readImgInfos.imgSrc = res.imgData;
 					chosenImg.imgSrc = res.imgData;
 				}
@@ -78,6 +78,7 @@ function updateAttrs(attrList) {
 		}
 		attrs.push(attrList[i].attrValue)
 	}
+	console.log(attrs)
 	db.transaction(function (tx) {
 		tx.executeSql(sql, attrs,
 			function (tx, results) { console.log(tx, results) },
