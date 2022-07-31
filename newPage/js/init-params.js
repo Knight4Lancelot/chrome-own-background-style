@@ -61,7 +61,7 @@ var btnList = document.getElementsByClassName('function-entries');
 var nameList = document.getElementsByClassName('hover-show-function-name');
 
 // 常用功能列表元素
-var webCollections = document.getElementById('web-collections');
+var webTimerStyle = document.getElementById('web-timer-style');
 // var webCollectionsName = document.getElementById('web-collections-name');
 var setBackground = document.getElementById('set-background');
 // var setBackgroundName = document.getElementById('set-background-name');
@@ -86,6 +86,9 @@ var imgChosenCornerList = document.getElementsByClassName('corner-boundaries');
 var chooseImgBtn = document.getElementById('choose-img-btn');
 var selectFileBtn = document.getElementById('select-files-btn');
 
+// 修改时间的样式模块
+
+
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
@@ -107,8 +110,8 @@ searchInput.onmouseout = function() { searchInputIsOver(false); }; // normal.js
 // 常用功能列表的函数设置
 setBackground.onmouseover = function() { changeBtnSize(0, true); }; // function-entry-btns.js
 setBackground.onmouseout = function() { changeBtnSize(0, false); }; // function-entry-btns.js
-webCollections.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
-webCollections.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
+webTimerStyle.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
+webTimerStyle.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
 setBackground.onclick = function() { showChangeBackground(); }; // outerPart.js
 recordIssue.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
 recordIssue.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js

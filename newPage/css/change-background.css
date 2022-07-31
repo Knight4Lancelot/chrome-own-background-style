@@ -1,21 +1,3 @@
-.close-btns {
-	cursor: pointer;
-	position: inherit;
-	right: 10px;
-	top: 10px;
-	width: 40px;
-	height: 40px;
-	border: none;
-	background-color: white;
-}
-.close-btns-icon {
-	position: inherit;
-	user-select: none;
-	left: 12px;
-	top: 12px;
-	width: 15px;
-	height: 15px;
-}
 #change-background-img {
 	transition: 0.7s;
 	position: absolute;

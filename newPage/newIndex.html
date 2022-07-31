@@ -8,7 +8,9 @@
 		<link rel="stylesheet" href="css/timer.css">
 		<link rel="stylesheet" href="css/search-box.css">
 		<link rel="stylesheet" href="css/function-tools.css">
-		<link rel="stylesheet" href="css/outer-functions.css">
+		<link rel="stylesheet" href="css/close-buttons.css">
+		<link rel="stylesheet" href="css/change-background.css">
+		<link rel="stylesheet" href="css/set-timer-style.css">
 	</head>
 	<body id="main-body">
 		<div id="cover-layer"></div>
@@ -39,12 +41,12 @@
 				id="set-background-name"
 				>修 改 背 景</span>
 			<button class="function-entries"
-				id="web-collections">
-				<img src="../assets/function-entries/collections.png">
+				id="web-timer-style">
+				<img src="../assets/function-entries/timerStyle.png">
 			</button>
 			<span class="hover-show-function-name"
-				id="web-collections-name"
-				>收 藏 网 页</span>
+				id="web-timer-style-name"
+				>时 间 样 式</span>
 			<button class="function-entries"
 				id="record-issues">
 				<img src="../assets/function-entries/notebook.png">
@@ -83,13 +85,21 @@
 				<img id="chosen-img">
 					<!-- src="../assets/background-buffer.jpg"> -->
 			</div>
+			<span style="position:inherit;font-size:14px;width:100%;left:50px;top:30px;color:#FF8686;">
+				建议选择分辨率大一点的图片，以免图片尺寸影响最终显示效果
+			</span>
 			<span style="position:inherit;bottom:45px;left:50px;font-size:18px;color:#606266;">当前放缩比例：
-				<input type="text" id="change-img-ratio" maxlength="3" placeholder="100"> %
+				<input type="text" id="change-img-ratio" maxlength="3" placeholder="100"> %&emsp;（使用滚轮或输入来修改比例）
 			</span>
 			<input type="file" id="select-files-btn"
 				style="visibility: hidden;">
 			<button id="choose-img-btn">选择图片</button>
 			<button id="confirm-set-background">确定使用</button>
+		</div>
+		
+		<!-- 修改时间的显示样式 -->
+		<div id="timer-color-setter">
+			123
 		</div>
 		
 		<script type="text/javascript" src="js/init-params.js"></script>
