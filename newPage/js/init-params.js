@@ -62,7 +62,7 @@ var btnList = document.getElementsByClassName('function-entries');
 var nameList = document.getElementsByClassName('hover-show-function-name');
 
 // 常用功能列表元素
-var webTimerStyle = document.getElementById('web-timer-style');
+var sleepReminder = document.getElementById('sleep-reminder');
 // var webCollectionsName = document.getElementById('web-collections-name');
 var setBackground = document.getElementById('set-background');
 // var setBackgroundName = document.getElementById('set-background-name');
@@ -119,10 +119,10 @@ setBackground.onclick = function() { showChangeBackground(); }; // change-backgr
 // 备忘录功能
 memoIssue.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
 memoIssue.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
-setBackground.onclick = function() { showMemoContainer(); }; // outerPart.js
+memoIssue.onclick = function() { showMemoContainer(); }; // outerPart.js
 // 
-webTimerStyle.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
-webTimerStyle.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js
+sleepReminder.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
+sleepReminder.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js
 // 更多功能
 moreFunctions.onmouseover = function() { changeBtnSize(3, true); }; // function-entry-btns.js
 moreFunctions.onmouseout = function() { changeBtnSize(3, false); }; // function-entry-btns.js
