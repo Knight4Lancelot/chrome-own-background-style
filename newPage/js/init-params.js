@@ -86,16 +86,18 @@ var imgChosenPart = document.getElementById('img-chosen-part');
 var imgChosenCornerList = document.getElementsByClassName('corner-boundaries');
 var chooseImgBtn = document.getElementById('choose-img-btn');
 var selectFileBtn = document.getElementById('select-files-btn');
+// 备忘录元素
 
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
 
 
-body.onload = function() { 
+body.onload = function() {
 	readDBTableData();
-	setTimeout(()=>{ init(); }, 100);	
+	setTimeout(()=>{ init(); }, 100);
 }; // normal.js
+
 // 搜索框函数设置
 searchBtn.onmouseover = function() { searchBtnStatus(true); }; // normal.js
 searchBtn.onmouseout = function() { searchBtnStatus(false); }; // normal.js
@@ -193,13 +195,15 @@ function init() {
 	if (isExist) {
 		backgroundImg.src = readImgInfos.imgSrc;
 		chosenImg.src = readImgInfos.imgSrc;
-		readImgInfos.naturalHeight = backgroundImg.naturalHeight;
-		readImgInfos.naturalWidth = backgroundImg.naturalWidth;
+		setTimeout(()=>{
+			readImgInfos.naturalHeight = backgroundImg.naturalHeight;
+			readImgInfos.naturalWidth = backgroundImg.naturalWidth;
+		}, 100);
 	}
 	backgroundImg.style.height = String(100*readImgInfos.naturalHeight/readImgInfos.ratio) + 'px';
 	backgroundImg.style.width = String(100*readImgInfos.naturalWidth/readImgInfos.ratio) + 'px';
 	backgroundImg.style.left = String(readImgInfos.offsetLeft) + 'px';
-	backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';		
+	backgroundImg.style.top = String(readImgInfos.offsetTop) + 'px';
 	
 	// 初始化选择背景图片的一系列组件的大小
 	initImgChoosePartSize();

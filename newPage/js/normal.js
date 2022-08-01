@@ -11,7 +11,6 @@ function loadBackground() {
 }
 
 function changeTimerColor() {
-	console.log(dateClock1.style.color)
 	if (timeClock.style.color === 'rgb(96, 98, 102)') {
 		timeClock.style.color = 'white';
 		dateClock1.style.color = 'white';

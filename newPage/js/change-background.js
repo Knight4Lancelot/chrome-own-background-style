@@ -63,6 +63,7 @@ function confirmToSetBackground() {
 		attrs.push({ attrName: "imgData", attrValue: readImgInfos.imgSrc });
 	}
 	updateAttrs(attrs);
+	closeOuterPart(0);
 }
 
 function setBtnStatus(index, status) {
