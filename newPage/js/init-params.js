@@ -88,6 +88,9 @@ var chooseImgBtn = document.getElementById('choose-img-btn');
 var selectFileBtn = document.getElementById('select-files-btn');
 // 备忘录元素
 var memoContainer = document.getElementById('memo-container');
+// 提示睡觉元素
+var sleepClockSetter = document.getElementById('sleep-remind-setter');
+var sleepClockReminder = document.getElementById('sleep-remind-reminder');
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
