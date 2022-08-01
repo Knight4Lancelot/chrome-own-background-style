@@ -1,13 +1,17 @@
 #sleep-remind-setter {
+	transition: 0.7s;
 	position: absolute;
 	z-index: 6;
+	top: -600px;
 	height: 500px;
 	width: 1000px;
 	border-radius: 20px;
 	border: 2px solid #C0C4CC;
 	background-color: white;
+	visibility: hidden;
 }
 #sleep-remind-reminder {
+	transition: 0.7s;
 	position: absolute;
 	z-index: 6;
 	bottom: 20px;
@@ -17,4 +21,5 @@
 	border-radius: 20px;
 	border: 2px solid #C0C4CC;
 	background-color: white;
+	visibility: hidden;
 }

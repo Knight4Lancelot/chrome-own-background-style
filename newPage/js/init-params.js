@@ -123,9 +123,10 @@ setBackground.onclick = function() { showChangeBackground(); }; // change-backgr
 memoIssue.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
 memoIssue.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
 memoIssue.onclick = function() { showMemoContainer(); }; // outerPart.js
-// 
+// 睡觉提示助手
 sleepReminder.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
 sleepReminder.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js
+sleepReminder.onclick=function() { showSleepClockSetter() };
 // 更多功能
 moreFunctions.onmouseover = function() { changeBtnSize(3, true); }; // function-entry-btns.js
 moreFunctions.onmouseout = function() { changeBtnSize(3, false); }; // function-entry-btns.js
@@ -205,6 +206,7 @@ function init() {
 	timer.style.left = String((pageWidth - 600)/2+20) + 'px';
 	tools.style.left = String((pageWidth - 750)/2) + 'px';
 	changeBackgroundComponent.style.left = String((pageWidth - 1100)/2) + 'px';
+	sleepClockSetter.style.left = String((pageWidth-1000)/2) + 'px';
 	
 	if (isExist) {
 		backgroundImg.src = readImgInfos.imgSrc;
