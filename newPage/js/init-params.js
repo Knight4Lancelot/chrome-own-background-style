@@ -68,8 +68,8 @@ var setBackground = document.getElementById('set-background');
 // var setBackgroundName = document.getElementById('set-background-name');
 var moreFunctions = document.getElementById('more-functions');
 // var moreFunctionsName = document.getElementById('more-functions-name');
-var recordIssue = document.getElementById('record-issues');
-// var recordIssueName = document.getElementById('record-issues-name');
+var memoIssue = document.getElementById('memo-issues');
+// var memoIssueName = document.getElementById('memo-issues-name');
 
 // 不在页面中显示的模块
 var outerPartList = document.getElementsByClassName('outer-part');
@@ -87,7 +87,7 @@ var imgChosenCornerList = document.getElementsByClassName('corner-boundaries');
 var chooseImgBtn = document.getElementById('choose-img-btn');
 var selectFileBtn = document.getElementById('select-files-btn');
 // 备忘录元素
-
+var memoContainer = document.getElementById('memo-container');
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
@@ -107,15 +107,23 @@ searchInput.onblur = function() { searchInputIsFocus(false); }; // normal.js
 searchInput.onmouseover = function() { searchInputIsOver(true); }; // normal.js
 searchInput.onmouseout = function() { searchInputIsOver(false); }; // normal.js
 
-// 常用功能列表的函数设置
+/* 
+	功能列表的函数设置
+*/
+// 修改时钟样式（白-黑）
 timer.onclick = function() { changeTimerColor(); };
+// 设置背景功能
 setBackground.onmouseover = function() { changeBtnSize(0, true); }; // function-entry-btns.js
 setBackground.onmouseout = function() { changeBtnSize(0, false); }; // function-entry-btns.js
-setBackground.onclick = function() { showChangeBackground(); }; // outerPart.js
-recordIssue.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
-recordIssue.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
+setBackground.onclick = function() { showChangeBackground(); }; // change-background.js
+// 备忘录功能
+memoIssue.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
+memoIssue.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
+setBackground.onclick = function() { showMemoContainer(); }; // outerPart.js
+// 
 webTimerStyle.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
 webTimerStyle.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js
+// 更多功能
 moreFunctions.onmouseover = function() { changeBtnSize(3, true); }; // function-entry-btns.js
 moreFunctions.onmouseout = function() { changeBtnSize(3, false); }; // function-entry-btns.js
 
@@ -132,6 +140,9 @@ selectFileBtn.onchange = function() { getPicture(this); };
 confirmSetBtn.onmouseover = function() { changeBtnStyle(confirmSetBtn, true); }; // outer-part.js
 confirmSetBtn.onmouseout = function() { changeBtnStyle(confirmSetBtn, false); }; // outer-part.js
 confirmSetBtn.onclick = function() { confirmToSetBackground(); }; // outer-part.js
+
+// 设置备忘录元素的函数设置
+
 
 for (let i = 0; i < nameList.length; i++) {
 	nameList[i].onmouseover = function() { changeNameVisible(i, true); };

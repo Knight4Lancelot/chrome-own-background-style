@@ -76,8 +76,18 @@ function setBtnStatus(index, status) {
 
 function closeOuterPart(index) {
 	indexCoverLayer.style.visibility = 'hidden';
-	outerPartList[index].style.visibility = 'hidden';
-	outerPartList[index].style.top = '-600px';
+	console.log(index)
+	switch(index) {
+		case 0:
+			outerPartList[index].style.top = '-600px';
+			break;
+		case 1:
+			outerPartList[index].style.left = '-1000px';
+			break;
+	}
+	// setTimeout(()=>{
+	// 	outerPartList[index].style.visibility = 'hidden';
+	// }, 500);
 }
 
 function showChangeBackground() {
