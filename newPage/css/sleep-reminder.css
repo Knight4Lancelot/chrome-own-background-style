@@ -11,11 +11,11 @@
 	visibility: hidden;
 }
 #sleep-remind-reminder {
-	transition: 0.7s;
+	transition: 0.5s;
 	position: absolute;
 	z-index: 6;
 	bottom: 20px;
-	right: 20px;
+	right: -450px;
 	height: 200px;
 	width: 400px;
 	border-radius: 20px;

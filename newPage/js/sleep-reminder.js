@@ -1,4 +1,11 @@
+document.getElementById('test-btn').onclick = function() {
+	openClock();
+}
 
+function openClock() {
+	sleepClockReminder.style.visibility = 'visible';
+	sleepClockReminder.style.right = '20px';
+}
 
 function showSleepClockSetter() {
 	indexCoverLayer.style.visibility = 'visible';
