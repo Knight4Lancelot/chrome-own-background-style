@@ -33,6 +33,15 @@ var imgSelectorInfo = {
 	width: 0,
 	height: 0
 };
+/*
+	闹钟时间信息
+*/
+var sleepClockInfo = {
+	isStart: false,
+	hour: 23,
+	minute: 30,
+	interval: 10
+}
 var inputFocus = false;
 var btnHover = false;
 var inputHover = false;
@@ -97,7 +106,8 @@ var closeIconList = document.getElementsByClassName('close-btns-icon');
 
 
 body.onload = function() {
-	readDBTableData();
+	readBackgroundTableData();
+	readSleepTableData();
 	setTimeout(()=>{ init(); }, 100);
 }; // normal.js
 

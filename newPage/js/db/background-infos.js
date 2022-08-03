@@ -12,7 +12,7 @@ var imgLeft, imgTop, ratio, imgSource;
 		imgData		BLOB		背景图片二进制流数据
 */
 // 若数据库中相关表不存在，则初始化表
-function initDBTable() {
+function initBackgroundTableData() {
 	var sqlCreate = 'create table imgAttrs(isExist int, left int, top int, ratio int, imgData BLOB);';
 	var sqlInitData = 'insert into imgAttrs values(0,0,0,100,"0");';
 	db.transaction(function (tx) {
@@ -27,7 +27,7 @@ function initDBTable() {
 	});
 }
 // 删除数据库的相关表
-function dropDBTable() {
+function dropBackgroundTable() {
 	var sql = 'drop table imgAttrs;';
 	db.transaction(function (tx) {
 		tx.executeSql(sql, [],
@@ -36,13 +36,12 @@ function dropDBTable() {
 	});
 }
 // 读取数据库相关表中需要的参数
-function readDBTableData() {
+function readBackgroundTableData() {
 	var sql = 'select * from imgAttrs;';
 	db.transaction(function (tx) {
 		tx.executeSql(sql, [],
 			function (tx, results) {
 				var res = results.rows.item(0);
-				console.log(res);
 				isExist = !(res.isExist===0);
 				if (isExist) {
 					readImgInfos.offsetTop = res.top-5;
@@ -53,8 +52,8 @@ function readDBTableData() {
 				}
 			},
 			function() {
-				initDBTable();
-				readDBTableData();
+				initBackgroundTableData();
+				readBackgroundTableData();
 			})
 	});
 }
@@ -67,7 +66,7 @@ function readDBTableData() {
 // 	{ attrName: "name4", attrValue: 4 },
 // 	{ attrName: "name5", attrValue: '5' }
 // ])
-function updateAttrs(attrList) {
+function updateBackgroundTableData(attrList) {
 	var sql = 'update imgAttrs set', attrs = [];
 	for (var i = 0; i < attrList.length; i++) {
 		sql += (' '+attrList[i].attrName+'=?');
@@ -78,7 +77,6 @@ function updateAttrs(attrList) {
 		}
 		attrs.push(attrList[i].attrValue)
 	}
-	console.log(attrs)
 	db.transaction(function (tx) {
 		tx.executeSql(sql, attrs,
 			function (tx, results) { console.log(tx, results) },

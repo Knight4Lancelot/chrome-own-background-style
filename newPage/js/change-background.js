@@ -62,7 +62,7 @@ function confirmToSetBackground() {
 	if (isChange) {
 		attrs.push({ attrName: "imgData", attrValue: readImgInfos.imgSrc });
 	}
-	updateAttrs(attrs);
+	updateBackgroundTableData(attrs);
 	closeOuterPart(0);
 }
 
@@ -72,23 +72,6 @@ function setBtnStatus(index, status) {
 	} else {
 		closeIconList[index].src = "../../assets/icons/close.png"
 	}
-}
-
-function closeOuterPart(index) {
-	indexCoverLayer.style.visibility = 'hidden';
-	console.log(index)
-	switch(index) {
-		case 2:
-		case 0:
-			outerPartList[index].style.top = '-600px';
-			break;
-		case 1:
-			outerPartList[index].style.left = '-1000px';
-			break;
-	}
-	// setTimeout(()=>{
-	// 	outerPartList[index].style.visibility = 'hidden';
-	// }, 500);
 }
 
 function showChangeBackground() {

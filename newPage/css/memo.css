@@ -5,7 +5,19 @@
 	height: 100%;
 	width: 1000px;
 	left: -1000px;
+	/* left: 0; */
 	background-color: rgb(0,0,0,0.5);
 	overflow-y: scroll;
 	visibility: hidden;
+}
+#add-new-memos {
+	cursor: pointer;
+	position: inherit;
+	background-color: white;
+	border-radius: 50%;
+	right: 20px;
+	bottom: 20px;
+	height: 100px;
+	width: 100px;
+	border: 1px solid grey;
 }
