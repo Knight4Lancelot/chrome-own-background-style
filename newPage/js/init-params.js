@@ -37,6 +37,7 @@ var imgSelectorInfo = {
 	闹钟时间信息
 */
 var sleepClockInfo = {
+	isReminderClosed: true,
 	isStart: false,
 	hour: 23,
 	minute: 30,

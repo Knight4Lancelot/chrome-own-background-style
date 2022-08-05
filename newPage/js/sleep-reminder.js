@@ -5,6 +5,7 @@ document.getElementById('test-btn').onclick = function() {
 function openClock() {
 	sleepClockReminder.style.visibility = 'visible';
 	sleepClockReminder.style.right = '20px';
+	sleepClockInfo.isReminderClosed = false;
 }
 
 function showSleepClockSetter() {

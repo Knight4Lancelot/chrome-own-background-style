@@ -83,7 +83,7 @@ function searchInputIsOver(status) {
 function freshTime() {
 	window.setTimeout(function(){
 		freshTime();
-	},1000/2)
+	},1000)
 	var rawDate = new Date();
 	var hour = rawDate.getHours()   //获取小时
 	var minute = rawDate.getMinutes()  //获取分钟
@@ -93,5 +93,15 @@ function freshTime() {
 	if (second<10) second = "0" + second;
 	var time = hour+" : "+minute+" : "+second;
 	timeClock.innerText = time;
+	if (!sleepClockInfo.isStart&&hour*60+minute>=sleepClockInfo.hour*60+sleepClockInfo.minute) {
+		sleepClockInfo.isStart = true;
+		openClock();
+	} else {
+		if (sleepClockInfo.isReminderClosed &&
+			second===0 &&
+			(hour*60+minute-sleepClockInfo.hour*60-sleepClockInfo.minute)%sleepClockInfo.interval===0) {
+			openClock();
+		}
+	}
 }
 
