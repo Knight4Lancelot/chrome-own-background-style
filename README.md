@@ -9,5 +9,5 @@
 ## 设计中的功能：
 #### 设定睡觉提醒闹钟（bug解决中）
 #### 备忘录（还在设计中）
-
+## 预览
 ![图片](https://user-images.githubusercontent.com/65166118/183943692-fdfb7406-72dd-4bd8-baac-b270d81c531c.png)
