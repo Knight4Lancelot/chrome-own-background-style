@@ -1,4 +1,4 @@
-# chrome-own-background-style
+# chrome-own-background-style(功能添加设计中，未完成开发)
 用于自定义Chrome浏览器背景图片的插件制作
 制作出来的效果大概就长这样
 直接在Chrome插件开发者模式选择已经解压的插件文件夹就能用
