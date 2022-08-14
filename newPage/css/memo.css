@@ -9,15 +9,76 @@
 	background-color: rgb(0,0,0,0.5);
 	overflow-y: scroll;
 	visibility: hidden;
+	/* visibility: visible; */
 }
 #add-new-memos {
 	cursor: pointer;
 	position: inherit;
-	background-color: white;
+	background-color: #FFFFFF;
 	border-radius: 50%;
 	right: 20px;
 	bottom: 20px;
-	height: 100px;
-	width: 100px;
+	height: 90px;
+	width: 90px;
 	border: 1px solid grey;
+}
+#add-new-memo-icon {
+	position: inherit;
+	user-select: none;
+	left: 16px;
+	top: 15px;
+	width: 55px;
+	height: 55px;
+}
+.memo-issue {
+	cursor: pointer;
+	position: inherit;
+	user-select: none;
+	background-color: white;
+	left: 80px;
+	width: 780px;
+	height: 50px;
+	padding: 10px;
+	border-radius: 20px;
+	font-family: "Microsoft YaHei";
+}
+.memo-title {
+	cursor: pointer;
+	position: inherit;
+	user-select: none;
+	left: 40px;
+	top: 20px;
+	font-size: 21px;
+}
+.memo-text {
+	cursor: pointer;
+	position: inherit;
+	user-select: none;
+	left: 40px;
+	top: 70px;
+	font-size: 15px;
+}
+.memo-alert-time {
+	cursor: pointer;
+	position: inherit;
+	user-select: none;
+	background-color: white;
+	top: 23px;
+	left: 500px;
+	border: none;
+	font-family: "Microsoft YaHei";
+	font-size: 18px;
+	color: #606266;
+}
+.memo-delete-btn {
+	cursor: pointer;
+	position: inherit;
+	user-select: none;
+	background-color: white;
+	top: 22px;
+	left: 690px;
+	border: none;
+	font-family: "Microsoft YaHei";
+	font-size: 18px;
+	color: #606266;
 }

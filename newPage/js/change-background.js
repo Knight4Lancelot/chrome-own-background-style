@@ -66,14 +66,6 @@ function confirmToSetBackground() {
 	closeOuterPart(0);
 }
 
-function setBtnStatus(index, status) {
-	if (status) {
-		closeIconList[index].src = "../../assets/icons/close-active.png";
-	} else {
-		closeIconList[index].src = "../../assets/icons/close.png"
-	}
-}
-
 function showChangeBackground() {
 	indexCoverLayer.style.visibility = 'visible';
 	changeBackgroundComponent.style.visibility = 'visible';

@@ -1,3 +1,11 @@
+function setBtnStatus(index, status) {
+	if (status) {
+		closeIconList[index].src = "../../assets/icons/close-active.png";
+	} else {
+		closeIconList[index].src = "../../assets/icons/close.png"
+	}
+}
+
 function closeOuterPart(index) {
 	indexCoverLayer.style.visibility = 'hidden';
 	console.log(index)

@@ -3,11 +3,11 @@ var naturalImgSize = {
 	height: 0,
 	width: 0
 };
-/*
-	选择背景图片的时候缩小版的图片展示信息
-		readImgInfos初始化时只需要填充naturalWidth，naturalHeight即可
-		其余的用initImgChoosePartSize()函数即可
-*/
+/**
+ *	选择背景图片的时候缩小版的图片展示信息
+ *		readImgInfos初始化时只需要填充naturalWidth，naturalHeight即可
+ *		其余的用initImgChoosePartSize()函数即可
+ */
 var isExist = false;
 var isChange = false;
 var readImgInfos = {
@@ -33,9 +33,9 @@ var imgSelectorInfo = {
 	width: 0,
 	height: 0
 };
-/*
-	闹钟时间信息
-*/
+/**
+ * 闹钟信息
+ */
 var sleepClockInfo = {
 	isReminderClosed: true,
 	isStart: false,
@@ -54,6 +54,10 @@ var hiddenNameList = {
 	btn: [],
 	span: []
 };
+/**
+ * 备忘录信息
+ */
+var isMemoInited = false;
 
 var body = document.getElementById('main-body');
 var pageCoverLayer = document.getElementById('cover-layer');
@@ -78,7 +82,7 @@ var setBackground = document.getElementById('set-background');
 // var setBackgroundName = document.getElementById('set-background-name');
 var moreFunctions = document.getElementById('more-functions');
 // var moreFunctionsName = document.getElementById('more-functions-name');
-var memoIssue = document.getElementById('memo-issues');
+var memo = document.getElementById('memos');
 // var memoIssueName = document.getElementById('memo-issues-name');
 
 // 不在页面中显示的模块
@@ -98,6 +102,13 @@ var chooseImgBtn = document.getElementById('choose-img-btn');
 var selectFileBtn = document.getElementById('select-files-btn');
 // 备忘录元素
 var memoContainer = document.getElementById('memo-container');
+var addNewMemosBtn = document.getElementById('add-new-memos');
+var addNewMemoIcon = document.getElementById('add-new-memo-icon');
+var memoIssueList = document.getElementsByClassName('memo-issue');
+var memoTileList = document.getElementsByClassName('memo-title');
+var memoTextList = document.getElementsByClassName('memo-text');
+var memoAlertTimeList = document.getElementsByClassName('memo-alert-time');
+var memoDeleteBtnList = document.getElementsByClassName('memo-delete-btn');
 // 提示睡觉元素
 var sleepClockSetter = document.getElementById('sleep-remind-setter');
 var sleepClockReminder = document.getElementById('sleep-remind-reminder');
@@ -131,9 +142,9 @@ setBackground.onmouseover = function() { changeBtnSize(0, true); }; // function-
 setBackground.onmouseout = function() { changeBtnSize(0, false); }; // function-entry-btns.js
 setBackground.onclick = function() { showChangeBackground(); }; // change-background.js
 // 备忘录功能
-memoIssue.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
-memoIssue.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
-memoIssue.onclick = function() { showMemoContainer(); }; // outerPart.js
+memo.onmouseover = function() { changeBtnSize(1, true); }; // function-entry-btns.js
+memo.onmouseout = function() { changeBtnSize(1, false); }; // function-entry-btns.js
+memo.onclick = function() { showMemoContainer(); }; // outerPart.js
 // 睡觉提示助手
 sleepReminder.onmouseover = function() { changeBtnSize(2, true); }; // function-entry-btns.js
 sleepReminder.onmouseout = function() { changeBtnSize(2, false); }; // function-entry-btns.js
@@ -157,16 +168,28 @@ confirmSetBtn.onmouseout = function() { changeBtnStyle(confirmSetBtn, false); };
 confirmSetBtn.onclick = function() { confirmToSetBackground(); }; // outer-part.js
 
 // 设置备忘录元素的函数设置
+addNewMemosBtn.onmouseover = function() { changeAddBtnStatus(true) };
+addNewMemosBtn.onmouseout = function() { changeAddBtnStatus(false) };
 
 
 for (let i = 0; i < nameList.length; i++) {
 	nameList[i].onmouseover = function() { changeNameVisible(i, true); };
 	nameList[i].onmouseout = function() { changeNameVisible(i, false); };	
 }
-for (let i = 0; i < closeBtnsList.length; i++) { // outer-part.js
+for (let i = 0; i < closeBtnsList.length; i++) { // closeBtn.js
 	closeBtnsList[i].onmouseover = function() { setBtnStatus(i, true); };
 	closeBtnsList[i].onmouseout = function() { setBtnStatus(i, false); };
 	closeBtnsList[i].onclick = function() { closeOuterPart(i); }
+}
+for (let i = 0; i < memoDeleteBtnList.length; i++) {
+	// 修改时间按钮的事件
+	memoDeleteBtnList[i].onmouseover = function() { changeDeleteMemoBtnStatus(i, true); };
+	memoDeleteBtnList[i].onmouseout = function() { changeDeleteMemoBtnStatus(i, false); };
+	memoDeleteBtnList[i].onclick = function() {};
+	// 删除备忘录按钮的事件
+	memoAlertTimeList[i].onmouseover = function() { changeAlertTimeBtnStatus(i, true); };
+	memoAlertTimeList[i].onmouseout = function() { changeAlertTimeBtnStatus(i, false); };
+	memoAlertTimeList[i].onclick = function() {};
 }
 
 document.onkeypress = function() {
@@ -246,6 +269,8 @@ function init() {
 		hiddenNameList.btn.push(false);
 		hiddenNameList.span.push(false);
 	}
+	
+	memo.click();
 }
 
 function initImgChoosePartSize() {
