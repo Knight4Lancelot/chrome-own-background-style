@@ -58,7 +58,7 @@ var hiddenNameList = {
  * 备忘录信息
  */
 var isMemoInited = false;
-var isMemoTextExpanded = false;
+var isMemoTextExpanded = -1;
 
 var body = document.getElementById('main-body');
 var pageCoverLayer = document.getElementById('cover-layer');
@@ -185,14 +185,14 @@ for (let i = 0; i < closeBtnsList.length; i++) { // closeBtn.js
 for (let i = 0; i < memoDeleteBtnList.length; i++) {
 	// 备忘录单个模块的事件
 	memoIssueList[i].onclick = function() { showMemoText(i); };
-	// 修改时间按钮的事件
+	// 删除备忘录按钮的事件
 	memoDeleteBtnList[i].onmouseover = function() { changeDeleteMemoBtnStatus(i, true); };
 	memoDeleteBtnList[i].onmouseout = function() { changeDeleteMemoBtnStatus(i, false); };
-	memoDeleteBtnList[i].onclick = function() {};
-	// 删除备忘录按钮的事件
+	memoDeleteBtnList[i].onclick = function() { deleteMemoIssue(i); };
+	// 修改时间按钮的事件
 	memoAlertTimeList[i].onmouseover = function() { changeAlertTimeBtnStatus(i, true); };
 	memoAlertTimeList[i].onmouseout = function() { changeAlertTimeBtnStatus(i, false); };
-	memoAlertTimeList[i].onclick = function() {};
+	memoAlertTimeList[i].onclick = function() { };
 }
 
 document.onkeypress = function() {
