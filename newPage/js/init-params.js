@@ -58,6 +58,7 @@ var hiddenNameList = {
  * 备忘录信息
  */
 var isMemoInited = false;
+var isMemoTextExpanded = false;
 
 var body = document.getElementById('main-body');
 var pageCoverLayer = document.getElementById('cover-layer');
@@ -182,6 +183,8 @@ for (let i = 0; i < closeBtnsList.length; i++) { // closeBtn.js
 	closeBtnsList[i].onclick = function() { closeOuterPart(i); }
 }
 for (let i = 0; i < memoDeleteBtnList.length; i++) {
+	// 备忘录单个模块的事件
+	memoIssueList[i].onclick = function() { showMemoText(i); };
 	// 修改时间按钮的事件
 	memoDeleteBtnList[i].onmouseover = function() { changeDeleteMemoBtnStatus(i, true); };
 	memoDeleteBtnList[i].onmouseout = function() { changeDeleteMemoBtnStatus(i, false); };
