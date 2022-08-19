@@ -102,6 +102,8 @@ var imgChosenCornerList = document.getElementsByClassName('corner-boundaries');
 var chooseImgBtn = document.getElementById('choose-img-btn');
 var selectFileBtn = document.getElementById('select-files-btn');
 // 备忘录元素
+var closeMemoBtn = document.getElementById('close-memo-btn');
+var closeMemoIcon = document.getElementById('close-memo-btn-icon');
 var memoContainer = document.getElementById('memo-container');
 var addNewMemosBtn = document.getElementById('add-new-memos');
 var addNewMemoIcon = document.getElementById('add-new-memo-icon');
@@ -116,7 +118,6 @@ var sleepClockReminder = document.getElementById('sleep-remind-reminder');
 // 不在页面中显示的模块的关闭按钮与图标
 var closeBtnsList = document.getElementsByClassName('close-btns');
 var closeIconList = document.getElementsByClassName('close-btns-icon');
-
 
 body.onload = function() {
 	readBackgroundTableData();
@@ -169,9 +170,12 @@ confirmSetBtn.onmouseout = function() { changeBtnStyle(confirmSetBtn, false); };
 confirmSetBtn.onclick = function() { confirmToSetBackground(); }; // outer-part.js
 
 // 设置备忘录元素的函数设置
+closeMemoBtn.onclick = function() { closeOuterPart(-1); };
+closeMemoBtn.onmouseover = function() { setLeftBtnStatus(true); };
+closeMemoBtn.onmouseout = function() { setLeftBtnStatus(false); };
 addNewMemosBtn.onmouseover = function() { changeAddBtnStatus(true) };
 addNewMemosBtn.onmouseout = function() { changeAddBtnStatus(false) };
-
+addNewMemosBtn.onclick = function() { addNewMemo(); };
 
 for (let i = 0; i < nameList.length; i++) {
 	nameList[i].onmouseover = function() { changeNameVisible(i, true); };
@@ -188,11 +192,16 @@ for (let i = 0; i < memoDeleteBtnList.length; i++) {
 	// 删除备忘录按钮的事件
 	memoDeleteBtnList[i].onmouseover = function() { changeDeleteMemoBtnStatus(i, true); };
 	memoDeleteBtnList[i].onmouseout = function() { changeDeleteMemoBtnStatus(i, false); };
-	memoDeleteBtnList[i].onclick = function() { deleteMemoIssue(i); };
+	memoDeleteBtnList[i].onclick = function(e) {
+		deleteMemoIssue(i);
+		e.stopPropagation();
+	};
 	// 修改时间按钮的事件
 	memoAlertTimeList[i].onmouseover = function() { changeAlertTimeBtnStatus(i, true); };
 	memoAlertTimeList[i].onmouseout = function() { changeAlertTimeBtnStatus(i, false); };
-	memoAlertTimeList[i].onclick = function() { };
+	memoAlertTimeList[i].onclick = function(e) {
+		e.stopPropagation();
+	};
 }
 
 document.onkeypress = function() {

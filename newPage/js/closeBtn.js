@@ -6,6 +6,15 @@ function setBtnStatus(index, status) {
 	}
 }
 
+function setLeftBtnStatus(status) {
+	console.log(status)
+	if (status) {
+		closeMemoIcon.src = "../../assets/icons/left-close-active.png";
+	} else {
+		closeMemoIcon.src = "../../assets/icons/left-close.png"
+	}
+}
+
 function closeOuterPart(index) {
 	indexCoverLayer.style.visibility = 'hidden';
 	console.log(index)
@@ -18,6 +27,8 @@ function closeOuterPart(index) {
 			break;
 		case 1: // 备忘录
 			outerPartList[index].style.left = '-1000px';
+			closeMemoBtn.style.left = '-1000px';
+			closeMemoBtn.style.visibility = 'hidden';
 			break;
 		case 3: // 睡觉时间闹钟提醒
 			outerPartList[index].style.right = '-450px';
