@@ -7,11 +7,10 @@ function setBtnStatus(index, status) {
 }
 
 function setLeftBtnStatus(status) {
-	console.log(status)
 	if (status) {
-		closeMemoIcon.src = "../../assets/icons/left-close-active.png";
+		closeMemoBtn.style['background-color'] = 'rgb(255,255,255,0.5)';
 	} else {
-		closeMemoIcon.src = "../../assets/icons/left-close.png"
+		closeMemoBtn.style['background-color'] = 'rgb(255,255,255,0)';
 	}
 }
 

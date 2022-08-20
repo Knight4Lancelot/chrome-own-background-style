@@ -12,12 +12,20 @@
 	/* visibility: visible; */
 }
 #close-memo-btn {
-	transition: 0.7s;
+	transition: 0.3s;
 	position: fixed;
+	top: -10px;
 	left: -1000px;
-	width: 40px;
-	height: 100%;
+	width: 80px;
+	height: 110%;
+	border-radius: 0;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+	background-color: rgb(255,255,255,0);
 	visibility: hidden;
+}
+#close-memo-btn-icon {
+	height: 50px;
 }
 #add-new-memos {
 	cursor: pointer;

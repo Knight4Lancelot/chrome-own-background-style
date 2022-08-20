@@ -170,7 +170,6 @@ confirmSetBtn.onmouseout = function() { changeBtnStyle(confirmSetBtn, false); };
 confirmSetBtn.onclick = function() { confirmToSetBackground(); }; // outer-part.js
 
 // 设置备忘录元素的函数设置
-closeMemoBtn.onclick = function() { closeOuterPart(-1); };
 closeMemoBtn.onmouseover = function() { setLeftBtnStatus(true); };
 closeMemoBtn.onmouseout = function() { setLeftBtnStatus(false); };
 addNewMemosBtn.onmouseover = function() { changeAddBtnStatus(true) };
@@ -182,8 +181,10 @@ for (let i = 0; i < nameList.length; i++) {
 	nameList[i].onmouseout = function() { changeNameVisible(i, false); };	
 }
 for (let i = 0; i < closeBtnsList.length; i++) { // closeBtn.js
-	closeBtnsList[i].onmouseover = function() { setBtnStatus(i, true); };
-	closeBtnsList[i].onmouseout = function() { setBtnStatus(i, false); };
+	if (i!==1) {
+		closeBtnsList[i].onmouseover = function() { setBtnStatus(i, true); };
+		closeBtnsList[i].onmouseout = function() { setBtnStatus(i, false); };
+	}
 	closeBtnsList[i].onclick = function() { closeOuterPart(i); }
 }
 for (let i = 0; i < memoDeleteBtnList.length; i++) {
